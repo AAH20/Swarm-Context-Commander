@@ -16,3 +16,8 @@ jobs:
       - run: PYTHONPATH=src python -m unittest discover -s tests -v
       - run: PYTHONPATH=src python -m swarmcontext demo --output outputs/demo.json
       - run: PYTHONPATH=src python -m swarmcontext bench-fleet --agents 1000 --active-tasks 100 --tenants 10 --output outputs/fleet-ci.json
+      - run: >-
+          PYTHONPATH=src python -m swarmcontext context-cognee
+          --query "refund reconciliation" --tenant synthetic-tenant --agent analyst-1
+          --response-file fixtures/cognee-chunks.synthetic.json
+          --output outputs/context-synthetic.json

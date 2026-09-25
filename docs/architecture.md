@@ -50,7 +50,7 @@ flowchart LR
     T --> COLD[Remove from cold and replica indexes]
 ```
 
-The present in-memory index demonstrates scope, expiry, versioned personal policies and tombstone semantics. A policy can narrow scopes, require a trust floor, prefer bounded terms, and set token limits; it never expands tenant access. Its graph is hand-linked and does not infer entities or relations. Cognee's [memory MCP](https://github.com/topoteretes/cognee/blob/main/cognee-mcp/README.md) can become a graph candidate source, but retrieved text remains untrusted and needs source identity, dataset isolation, correction and deletion testing. Its snippets cannot grant tool authority. `context-graph-compact` is a candidate second compiler for comparative evaluation, not the foundation of untested accuracy claims.
+The present in-memory index demonstrates scope, expiry, versioned personal policies and tenant-scoped tombstone semantics. A policy can narrow scopes, require a trust floor, prefer bounded terms, and set token limits; it never expands tenant access. Its graph is hand-linked and does not infer entities or relations. The opt-in loopback Cognee adapter requests `CHUNKS`, and its results enter at trust level zero. The local HTTP contract is mocked in CI; a native server still needs source identity, dataset isolation, correction and deletion testing. Cognee's [memory MCP](https://github.com/topoteretes/cognee/blob/main/cognee-mcp/README.md) is another possible integration surface. Retrieved snippets cannot grant tool authority. `context-graph-compact` is a candidate second compiler for comparative evaluation, not the foundation of untested accuracy claims.
 
 ## Runtime selection
 

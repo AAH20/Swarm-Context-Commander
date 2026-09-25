@@ -14,6 +14,11 @@ from urllib.parse import urlsplit
 from .registry import ContractError, canonical
 
 
+class _NoRedirect(request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ContractError("vLLM HTTP redirects are not allowed")
+
+
 @dataclass(frozen=True)
 class InferenceRequest:
     request_id: str
@@ -97,7 +102,7 @@ def local_vllm_chat(base_url: str, item: InferenceRequest, messages: list[dict],
     req = request.Request(base_url.rstrip("/") + "/v1/chat/completions", body,
                           headers={"Content-Type": "application/json"}, method="POST")
     try:
-        with request.urlopen(req, timeout=30) as response:
+        with request.build_opener(_NoRedirect()).open(req, timeout=30) as response:
             raw = response.read(65537)
     except (error.URLError, TimeoutError) as exc:
         raise ContractError(f"local vLLM request failed: {type(exc).__name__}") from exc

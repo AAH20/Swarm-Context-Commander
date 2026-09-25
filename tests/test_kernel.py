@@ -1,16 +1,21 @@
+import contextlib
 import hashlib
+import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from swarmcontext.benchmark import benchmark_fleet
-from swarmcontext.cli import demo
+from swarmcontext.cli import demo, main
+from swarmcontext.cognee import _NoRedirect as CogneeNoRedirect, ingest_chunks, search_local
 from swarmcontext.context import ContextIndex, ContextPolicy, Memory
-from swarmcontext.inference import InferenceRequest, TokenAdmission, batch_key, cache_salt, local_vllm_chat
+from swarmcontext.inference import _NoRedirect as VllmNoRedirect, InferenceRequest, TokenAdmission, batch_key, cache_salt, local_vllm_chat
 from swarmcontext.protocol import cognee_chunks, computer_use_event, task_envelope
 from swarmcontext.registry import ContractError, Registry
 from swarmcontext.scheduler import FairQueue, Work, placement
+from swarmcontext.worker import FixtureAdapter, Job, execute
 
 
 class RegistryTests(unittest.TestCase):
@@ -62,7 +67,7 @@ class ContextTests(unittest.TestCase):
         self.assertEqual(len(bundle["items"]), 2)
         self.assertNotIn("secret", str(bundle))
         self.assertEqual(index.collect_expired(3), 1)
-        self.assertEqual(index.delete_source(source_a), 1)
+        self.assertEqual(index.delete_source(source_a, tenant_id="one"), 1)
         with self.assertRaisesRegex(ContractError, "cannot be reingested"):
             index.add(Memory("alice:new", "one", "tenant", "refund", source_a, 4))
         self.assertEqual(index.compile("refund", tenant="one", agent="alice", now=4)["items"], [])
@@ -134,10 +139,54 @@ class InferenceAndProtocolTests(unittest.TestCase):
         result = demo()
         self.assertEqual(result["task_state"], "completed")
         self.assertEqual(result["placement"], "container")
+        self.assertEqual(result["worker"]["status"], "synthetic_completed")
         report = benchmark_fleet(1000, 100, 10)
         self.assertEqual(report["logical_agents"], 1000)
         self.assertEqual(report["active_synthetic_tasks"], 100)
         self.assertIn("vLLM tokens/s", report["not_measured"])
+
+    def test_mocked_cognee_http_to_context_to_fixture_worker(self):
+        with self.assertRaisesRegex(ContractError, "redirects"):
+            CogneeNoRedirect().redirect_request(None, None, 302, "redirect", {}, "https://example.com")
+        with self.assertRaisesRegex(ContractError, "redirects"):
+            VllmNoRedirect().redirect_request(None, None, 302, "redirect", {}, "https://example.com")
+        url = "http://127.0.0.1:8000"
+        with self.assertRaisesRegex(ContractError, "opt-in"):
+            search_local(url, "refund")
+        response = io.BytesIO(json.dumps([{"id": "synthetic-source", "text": "Refund reconciliation memo."}]).encode())
+        class FakeOpener:
+            def open(self, req, timeout):
+                self.sent = req
+                return response
+        opener = FakeOpener()
+        with patch("swarmcontext.cognee.request.build_opener", return_value=opener):
+            chunks = search_local(url, "refund", allow_network=True)
+        self.assertEqual(opener.sent.full_url, url + "/api/v1/search")
+        self.assertEqual(json.loads(opener.sent.data)["search_type"], "CHUNKS")
+        index = ContextIndex()
+        self.assertEqual(ingest_chunks(index, chunks, tenant_id="one", now=1), 1)
+        self.assertEqual(ingest_chunks(index, chunks, tenant_id="two", now=1), 1)
+        bundle = index.compile("refund", tenant="one", agent="alice", now=2)
+        self.assertEqual(len(bundle["items"]), 1)
+        self.assertEqual(index.compile("refund", tenant="other", agent="bob", now=2)["items"], [])
+        result = execute(Job("task-1", "one", "Review refund", "fixture"), bundle, FixtureAdapter())
+        self.assertEqual(result["status"], "synthetic_completed")
+        self.assertEqual(result["placement_class"], "container")
+        digest = hashlib.sha256(chunks[0]["text"].encode()).hexdigest()
+        self.assertEqual(index.delete_source(digest, tenant_id="one"), 1)
+        self.assertEqual(len(index.compile("refund", tenant="two", agent="bob", now=2)["items"]), 1)
+
+    def test_cognee_cli_saved_response_is_reproducible_and_local(self):
+        fixture = Path(__file__).resolve().parent.parent / "fixtures" / "cognee-chunks.synthetic.json"
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "bundle.json"
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(main(["context-cognee", "--query", "refund reconciliation",
+                                       "--tenant", "synthetic-tenant", "--agent", "analyst-1",
+                                       "--response-file", str(fixture), "--output", str(output)]), 0)
+            bundle = json.loads(output.read_text())
+            self.assertEqual(len(bundle["items"]), 2)
+            self.assertTrue(all(item["trust"] == 0 for item in bundle["items"]))
 
 
 if __name__ == "__main__":

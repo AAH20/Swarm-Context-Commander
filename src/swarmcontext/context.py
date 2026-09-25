@@ -57,7 +57,7 @@ class ContextIndex:
         self.items: dict[str, Memory] = {}
         self.postings: dict[str, set[str]] = {}
         self.edges: dict[str, set[str]] = {}
-        self.tombstones: set[str] = set()
+        self.tombstones: set[tuple[str, str]] = set()
 
     def add(self, item: Memory) -> None:
         if (not item.memory_id or not item.tenant_id or item.scope not in ("agent", "tenant", "public")
@@ -66,7 +66,7 @@ class ContextIndex:
             raise ContractError("invalid memory record")
         if item.scope == "agent" and (not item.owner_agent_id or len(item.owner_agent_id) > 128):
             raise ContractError("agent-scoped memory requires explicit owner_agent_id")
-        if item.source_sha256 in self.tombstones:
+        if (item.tenant_id, item.source_sha256) in self.tombstones:
             raise ContractError("deleted source cannot be reingested")
         if item.memory_id in self.items:
             raise ContractError("duplicate memory ID")
@@ -143,11 +143,12 @@ class ContextIndex:
         for neighbor in self.edges.pop(key, set()):
             self.edges[neighbor].discard(key)
 
-    def delete_source(self, source_sha256: str) -> int:
-        if not re.fullmatch(r"[0-9a-f]{64}", source_sha256):
-            raise ContractError("invalid source digest")
-        self.tombstones.add(source_sha256)
-        keys = [key for key, item in self.items.items() if item.source_sha256 == source_sha256]
+    def delete_source(self, source_sha256: str, *, tenant_id: str) -> int:
+        if not tenant_id or not re.fullmatch(r"[0-9a-f]{64}", source_sha256):
+            raise ContractError("invalid tenant or source digest")
+        self.tombstones.add((tenant_id, source_sha256))
+        keys = [key for key, item in self.items.items()
+                if item.tenant_id == tenant_id and item.source_sha256 == source_sha256]
         for key in keys:
             self._remove(key)
         return len(keys)
