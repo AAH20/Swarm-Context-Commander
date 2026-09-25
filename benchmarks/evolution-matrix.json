@@ -1,0 +1,54 @@
+{
+  "schema_version": "swarmcontext-evolution-matrix/v1",
+  "status": "proposal_with_one_local_synthetic_fixture",
+  "policy": {
+    "hard_gates_override_composite_score": true,
+    "thresholds": "Freeze by workload and consequence before holdout evaluation; no universal numeric safety thresholds are asserted.",
+    "comparison": "Use identical tasks, budgets, hardware and independent acceptance labels; report raw denominators and uncertainty."
+  },
+  "phases": [
+    {"id": "local", "name": "Local deterministic fixtures", "promotion": "All scope, deletion and schema invariants pass"},
+    {"id": "baseline", "name": "Upstream and simple baselines", "promotion": "Pinned harnesses and held-out results reproduced"},
+    {"id": "pilot", "name": "Consented single-tenant pilot", "promotion": "Independent acceptance and reversible actions measured"},
+    {"id": "distributed", "name": "Multi-tenant distributed soak", "promotion": "Isolation, recovery, p99 and full cost proven under active load"},
+    {"id": "embodied", "name": "Supervised simulator-to-lab", "promotion": "Safety envelope, stop path and human interventions measured"},
+    {"id": "high_assurance", "name": "Independently assessed institutional profile", "promotion": "Owning institution authorizes and assesses all relevant boundaries"}
+  ],
+  "metrics": [
+    {"id": "graph.source_recall", "domain": "graph", "unit": "fraction", "direction": "maximize", "formula": "labeled_relevant_source_ids_retrieved / labeled_relevant_source_ids", "status": "local_fixture", "phase": "local"},
+    {"id": "graph.source_precision", "domain": "graph", "unit": "fraction", "direction": "maximize", "formula": "labeled_relevant_source_ids_retrieved / source_ids_retrieved", "status": "local_fixture", "phase": "local"},
+    {"id": "graph.entity_resolution_f1", "domain": "graph", "unit": "fraction", "direction": "maximize", "formula": "harmonic_mean(entity_merge_precision, entity_merge_recall) on independently labeled pairs", "status": "proposed", "phase": "baseline"},
+    {"id": "graph.typed_edge_f1", "domain": "graph", "unit": "fraction", "direction": "maximize", "formula": "macro_F1 over independently labeled relation types", "status": "proposed", "phase": "baseline"},
+    {"id": "graph.temporal_validity_f1", "domain": "graph", "unit": "fraction", "direction": "maximize", "formula": "F1 for relation validity at queried event time", "status": "proposed", "phase": "baseline"},
+    {"id": "graph.path_recall_at_k", "domain": "graphrag", "unit": "fraction", "direction": "maximize", "formula": "gold_support_paths_in_top_k / gold_support_paths", "status": "proposed", "phase": "baseline"},
+    {"id": "graph.claim_support_precision", "domain": "graphrag", "unit": "fraction", "direction": "maximize", "formula": "independently_supported_answer_claims / accepted_answer_claims", "status": "proposed", "phase": "baseline"},
+    {"id": "graph.revocation_lag", "domain": "graph", "unit": "seconds", "direction": "minimize", "formula": "last_derived_artifact_invalidated_at - source_revoked_at", "status": "proposed", "phase": "distributed"},
+    {"id": "isolation.forbidden_scope_leaks", "domain": "isolation", "unit": "count", "direction": "minimize", "formula": "retrieved_or_emitted_items_outside_authorized_scope", "status": "local_fixture", "phase": "local", "hard_gate": true},
+    {"id": "isolation.deleted_source_reappeared", "domain": "isolation", "unit": "boolean", "direction": "minimize", "formula": "revoked_source_or_derivative_visible_after_revocation_barrier", "status": "local_fixture", "phase": "local", "hard_gate": true},
+    {"id": "model.calibration_brier", "domain": "probabilistic_ml", "unit": "score", "direction": "minimize", "formula": "mean((predicted_probability - observed_binary_outcome)^2)", "status": "proposed", "phase": "baseline"},
+    {"id": "model.predictive_interval_coverage", "domain": "probabilistic_ml", "unit": "fraction", "direction": "target_interval", "formula": "observations_within_declared_prediction_interval / observations", "status": "proposed", "phase": "baseline"},
+    {"id": "model.constraint_violation", "domain": "optimization", "unit": "count_per_1000", "direction": "minimize", "formula": "infeasible_or_unsafe_decisions / accepted_decisions * 1000", "status": "proposed", "phase": "pilot", "hard_gate": true},
+    {"id": "agent.accepted_task_rate", "domain": "agents", "unit": "fraction", "direction": "maximize", "formula": "independently_accepted_tasks / submitted_tasks", "status": "proposed", "phase": "pilot"},
+    {"id": "agent.duplicate_side_effects", "domain": "agents", "unit": "count_per_1000_writes", "direction": "minimize", "formula": "duplicate_external_writes / attempted_external_writes * 1000", "status": "proposed", "phase": "pilot", "hard_gate": true},
+    {"id": "agent.p99_end_to_end", "domain": "agents", "unit": "milliseconds", "direction": "minimize", "formula": "99th_percentile(submission_to_accepted_terminal_state)", "status": "proposed", "phase": "distributed"},
+    {"id": "agent.active_sessions", "domain": "agents", "unit": "count", "direction": "report", "formula": "concurrent_executing_sessions_not_registered_descriptors", "status": "proposed", "phase": "distributed"},
+    {"id": "agent.fairness_max_queue_age", "domain": "agents", "unit": "seconds", "direction": "minimize", "formula": "maximum_wait_duration_by_tenant_at_fixed_load", "status": "proposed", "phase": "distributed"},
+    {"id": "cost.per_accepted_task", "domain": "economics", "unit": "currency_per_task", "direction": "minimize", "formula": "all_in_inference_gpu_idle_cpu_vm_browser_storage_egress_labeling_human_cost / independently_accepted_tasks", "status": "proposed", "phase": "pilot"},
+    {"id": "human.review_utilization", "domain": "human_interface", "unit": "ratio", "direction": "minimize", "formula": "review_required_arrivals_per_hour / (staffed_reviewers * accepted_decisions_per_reviewer_hour)", "status": "proposed", "phase": "pilot"},
+    {"id": "human.critical_miss_rate", "domain": "human_interface", "unit": "fraction", "direction": "minimize", "formula": "missed_critical_cases / independently_labeled_critical_cases", "status": "proposed", "phase": "pilot", "hard_gate": true},
+    {"id": "human.override_p95", "domain": "human_interface", "unit": "seconds", "direction": "minimize", "formula": "95th_percentile(operator_override_request_to_effective_safe_state)", "status": "proposed", "phase": "embodied"},
+    {"id": "human.nasa_tlx", "domain": "human_interface", "unit": "instrument_score", "direction": "minimize", "formula": "NASA_TLX_scored_per_official_instrument_with_protocol_reported", "status": "proposed", "phase": "pilot"},
+    {"id": "physical.simulated_safety_events", "domain": "physical_ai", "unit": "count_per_1000_trials", "direction": "minimize", "formula": "simulated_collisions_or_envelope_violations / trials * 1000", "status": "proposed", "phase": "embodied", "hard_gate": true}
+  ],
+  "scale_axes": ["graph_nodes", "graph_edges", "edge_updates_per_second", "tenants", "logical_agent_descriptors", "active_tasks", "input_output_tokens_per_second", "browser_vm_sessions", "simulated_devices", "review_required_arrivals_per_hour", "failure_injection_rate", "model_families"],
+  "upstream_suites": [
+    {"name": "GraphRAG-Bench", "url": "https://openreview.net/pdf?id=i9q9xDMjG7", "scope": "graph construction retrieval generation"},
+    {"name": "LongMemEval-V2", "url": "https://github.com/xiaowu0162/LongMemEval-V2", "scope": "long-history agent memory"},
+    {"name": "SWE-bench", "url": "https://github.com/SWE-bench/SWE-bench", "scope": "code issue resolution"},
+    {"name": "OSWorld-V2", "url": "https://github.com/xlang-ai/OSWorld-V2", "scope": "computer use"},
+    {"name": "tau-bench", "url": "https://github.com/sierra-research/tau-bench", "scope": "tool use and policies"},
+    {"name": "MLPerf Inference Datacenter", "url": "https://mlcommons.org/benchmarks/inference-datacenter/", "scope": "inference system performance"},
+    {"name": "BEHAVIOR-1K", "url": "https://behavior.stanford.edu/", "scope": "embodied household tasks"},
+    {"name": "LIBERO", "url": "https://github.com/Lifelong-Robot-Learning/LIBERO", "scope": "lifelong robot manipulation"}
+  ]
+}

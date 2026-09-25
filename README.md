@@ -22,6 +22,10 @@ The [personalization and learning architecture](docs/personalization-and-learnin
 
 The [numbered workload catalog](docs/100-workloads.md) spans ten domains: licensed and public data, continuous BI, synthetic training environments, product audiences and pricing, due diligence, computer use, agent infrastructure, physical AI, cyber defense, and dual-use assurance. Each of its 100 proposals has candidate inputs, evaluation KPIs, a fully loaded unit-cost denominator, a maturity phase and a hard release gate. The [machine-readable catalog](catalog/workloads.json) is generated from [one source file](catalog/workloads.psv) and validated in CI. The catalog is a map of possible applications, **not** a claim that 100 integrations or workloads are deployed.
 
+## Evolution and evaluation standard
+
+The [versioned evaluation standard](docs/evolution-evaluation-standard.md) defines graph construction and GraphRAG tests, deterministic and probabilistic model selection, deep-agent scaling axes, human command capacity, and phase-specific release gates. Its [machine-readable metric matrix](benchmarks/evolution-matrix.json) separates the one implemented synthetic graph fixture from proposed benchmark tracks. The standard compares upstream GraphRAG, memory, computer-use, inference and embodied suites on their own protocols, then adds new system-level challenges without claiming leaderboard superiority. High-assurance and physical-AI profiles are conditional research designs, not deployed or accredited capabilities.
+
 ## Installable interfaces
 
 | Interface | Get started | Scope |
@@ -40,6 +44,7 @@ From the repository root with Python 3.10+:
 python3 -m pip install -e .
 swarm-context-commander demo
 swarm-context-commander personalization-demo
+swarm-context-commander eval-graph
 swarm-context-commander bench-fleet --agents 150000 --active-tasks 10000 --tenants 100
 
 # Or run directly from the checkout without installing:
