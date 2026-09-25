@@ -1,0 +1,26 @@
+# Design example only. Pin a real image, model weights, GPU type and storage.
+# vLLM model loading and GPU cost make a warm floor preferable for latency-sensitive traffic.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarmcontext-vllm
+  namespace: swarmcontext
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarmcontext-vllm
+  template:
+    metadata:
+      labels:
+        app: swarmcontext-vllm
+    spec:
+      containers:
+        - name: vllm
+          image: replace-with-pinned-vllm-image@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          args: ["serve", "replace-with-model-path"]
+          resources:
+            requests:
+              nvidia.com/gpu: "1"
+            limits:
+              nvidia.com/gpu: "1"

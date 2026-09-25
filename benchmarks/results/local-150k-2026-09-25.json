@@ -1,0 +1,28 @@
+{
+  "active_synthetic_tasks": 10000,
+  "drain_seconds": 0.0165,
+  "enqueue_seconds": 0.0419,
+  "environment": {
+    "arch": "arm64",
+    "logical_cpu_count": 8,
+    "os": "Darwin",
+    "python": "3.14.7",
+    "sqlite": "3.53.4"
+  },
+  "hypothetical_events_per_second_at_one_event_per_agent_minute": 2500.0,
+  "logical_agents": 150000,
+  "measurement_note": "One local run on 2026-09-25; no latency distribution or cluster throughput measured.",
+  "not_measured": [
+    "A2A network throughput",
+    "Cognee latency",
+    "vLLM tokens/s",
+    "browser sessions",
+    "distributed failover",
+    "GPU cost"
+  ],
+  "registration_seconds": 2.6023,
+  "schema_version": "swarmcontext-fleet-benchmark/v1",
+  "scope": "single_process_sqlite_registration_and_in_memory_scheduler_only",
+  "sqlite_bytes": 17489920,
+  "tenants": 100
+}
