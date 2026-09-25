@@ -4,14 +4,26 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "swarm-context-commander"
-version = "0.1.0"
+version = "0.2.0"
 description = "Inspectable context and admission kernel for large logical agent fleets"
+readme = "README.md"
+keywords = ["ai-agent-memory", "mcp-server", "multi-agent-systems", "context-engineering", "graphrag", "agent-orchestration"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Scientific/Engineering :: Artificial Intelligence"]
 requires-python = ">=3.10"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.27,<2"]
+
+[project.urls]
+Homepage = "https://github.com/AAH20/Swarm-Context-Commander"
+Documentation = "https://github.com/AAH20/Swarm-Context-Commander/tree/main/docs"
+Issues = "https://github.com/AAH20/Swarm-Context-Commander/issues"
 
 [project.scripts]
 swarm-context-commander = "swarmcontext.cli:main"
 swarmcontext = "swarmcontext.cli:main"
+swarm-context-mcp = "swarmcontext.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

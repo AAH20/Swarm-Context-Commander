@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Swarm Context Commander — agent memory explorer</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#eaf0ff;background:#101627}body{max-width:900px;margin:0 auto;padding:36px 20px}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}p{color:#bac7dc;line-height:1.6}.eyebrow{color:#77d5ef;text-transform:uppercase;letter-spacing:.14em;font-weight:700}.card{background:#1c2940;border:1px solid #37506d;border-radius:14px;padding:22px;margin:18px 0}label{display:block;font-weight:700;margin:12px 0 6px}input,textarea{box-sizing:border-box;width:100%;padding:12px;border:1px solid #6480a7;border-radius:8px;background:#0b1427;color:#fff;font:inherit}button{margin-top:16px;padding:12px 20px;background:#88e5f9;color:#061622;font-weight:800;border:0;border-radius:8px;cursor:pointer}pre{white-space:pre-wrap;word-break:break-word;background:#0b1427;padding:18px;border-radius:8px;color:#eaf0ff}a{color:#8fe5ff}.muted{font-size:.9rem}
+</style></head><body>
+<div class="eyebrow">Inspectable reference • synthetic data</div><h1>Agent memory, under a budget.</h1>
+<p>Explore how a lexical baseline chooses source-linked context for an AI agent. The Python package adds an MCP server, fair queue, and logical-agent benchmark; this page is a browser-only illustration.</p>
+<div class="card"><label for="query">Task query</label><input id="query" value="refund review"><label for="records">Synthetic source records (one per line)</label><textarea id="records" rows="6">Refund reconciliation needs review before rollout.
+A product analytics dashboard tracks weekly conversion.
+The refund ledger is pending human approval.</textarea><label for="budget">Approximate token budget</label><input id="budget" type="number" min="1" max="32768" value="40"><button id="run">Compile context</button></div>
+<div class="card"><strong>Selected context</strong><pre id="out" aria-live="polite"></pre><p class="muted">Illustrative lexical overlap; token estimate is characters ÷ 4. No model inference, persistence, or tenant authentication.</p></div>
+<p><a href="https://github.com/AAH20/Swarm-Context-Commander">Source and install instructions ↗</a></p>
+<script>
+const out=document.getElementById('out');function run(){const q=document.getElementById('query').value.toLowerCase().match(/[a-z0-9_]{2,}/g)||[];const terms=new Set(q);const rows=document.getElementById('records').value.split('\n').filter(Boolean).slice(0,64);const budget=Math.max(1,Math.min(32768,Number(document.getElementById('budget').value)||1));let used=0;const items=[];for(const [i,body] of rows.map((v,i)=>[i,v]).sort((a,b)=>score(b[1])-score(a[1]))){const cost=Math.max(1,Math.ceil(body.length/4));if(score(body)>0&&used+cost<=budget){items.push({source:`synthetic-${i+1}`,text:body,estimated_tokens:cost});used+=cost}}out.textContent=JSON.stringify({selected:items,estimated_tokens:used,budget,claim:'browser-only illustration; run Python MCP server for actual implementation'},null,2)}function score(s){const words=new Set(s.toLowerCase().match(/[a-z0-9_]{2,}/g)||[]);return [...terms].filter(t=>words.has(t)).length}document.getElementById('run').addEventListener('click',run);run();
+</script></body></html>

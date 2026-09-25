@@ -1,8 +1,22 @@
 # Swarm-Context-Commander
 
-**Inspectable context compilation and admission for large logical-agent fleets.** Swarm-Context-Commander is a standalone reference kernel for registering virtual agents, admitting idempotent tasks, selecting bounded context, choosing a runtime class, and reserving inference tokens. It is designed to interoperate with A2A agents, Cognee, browser agents, vLLM, Google/AX, and other runtimes without claiming those live integrations are already deployed.
+**AI agent memory, context engineering, and multi-agent orchestration you can inspect and benchmark.** Swarm-Context-Commander is a standalone reference kernel for registering virtual agents, admitting idempotent tasks, selecting bounded context, choosing a runtime class, and reserving inference tokens. It is designed to interoperate with A2A agents, Cognee, browser agents, vLLM, Google/AX, and other runtimes without claiming those live integrations are already deployed.
 
-**Current claim:** the repository contains a single-node SQLite registry, in-memory weighted deficit-round-robin scheduler, lexical/graph context baseline, tenant-scoped source-deletion tombstones, bounded loopback Cognee and vLLM clients, A2A-inspired task sidecar, executable synthetic computer-use worker, Terraform configuration module, and explicit infrastructure examples. The 150,000-agent benchmark registers *logical descriptors*; it does **not** run 150,000 models or browsers. All data in the demo and benchmark is synthetic.
+If you are looking for an **MCP server for agent context**, a reproducible **GraphRAG baseline**, or a way to reason about **150K logical agents**, start here. The new stdio MCP server exposes bounded inline-context compilation and runtime placement; it does not expose a remote multi-tenant service.
+
+<!-- mcp-name: io.github.AAH20/swarm-context-commander -->
+
+**Current claim:** the repository contains a single-node SQLite registry, in-memory weighted deficit-round-robin scheduler, lexical/graph context baseline, tenant-scoped source-deletion tombstones, bounded loopback Cognee and vLLM clients, A2A-inspired task sidecar, executable synthetic computer-use worker, local MCP server, Terraform configuration module, and explicit infrastructure examples. The 150,000-agent benchmark registers *logical descriptors*; it does **not** run 150,000 models or browsers. All data in the demo and benchmark is synthetic.
+
+## Installable interfaces
+
+| Interface | Get started | Scope |
+| --- | --- | --- |
+| Python CLI | `pip install .` then `swarm-context-commander demo` | Local synthetic end-to-end example |
+| MCP server | `pip install '.[mcp]'` then `swarm-context-mcp` | Two stdio tools for inline context and placement; [configuration](docs/mcp-server.md) |
+| Agent skill | `npx skills add AAH20/Swarm-Context-Commander --skill agent-context-engineering` | [Reusable benchmark and context workflow](skills/agent-context-engineering/SKILL.md) |
+
+The MCP server and skill are installable from this repository. Public package-registry and hosted listings have separate publication status; the presence of a `server.json` manifest alone does not make an MCP Registry entry.
 
 ## Run it
 
@@ -73,6 +87,18 @@ Track cost per accepted task as:
 `(model inference + GPU idle capacity + CPU workers + browser/VM minutes + storage + queue/egress + human review) / independently accepted tasks`
 
 The benchmark must publish both the numerator and acceptance definition, plus p95/p99 latency, error rate, cross-tenant isolation, task recovery, context recall, and quality regression. Registration speed alone cannot establish production readiness. See [benchmark protocol](docs/benchmark-protocol.md).
+
+## Common questions
+
+**How do I give an AI agent memory without overflowing its context window?** Send candidate records to `compile_agent_context` with a fixed token budget. It returns a source-linked lexical selection. It does not guarantee semantic recall; compare it with your retrieval system against a labeled query set before switching.
+
+**Is this a GraphRAG framework or a vector database?** The Python kernel includes a small one-hop graph and lexical baseline. Cognee can provide candidate chunks through an opt-in loopback adapter. No vector database or persistent distributed knowledge graph is bundled.
+
+**Can it orchestrate 150,000 active AI agents?** No. The published benchmark registers 150,000 logical descriptors, while the separate queue test drains synthetic tasks on one machine. Active model, browser, network and GPU concurrency are unmeasured.
+
+**Can I connect it to vLLM, A2A or computer-use agents?** There are bounded vLLM and Cognee loopback clients, an A2A-inspired envelope, and a synthetic worker receipt. Native end-to-end provider conformance is still an integration milestone; see the [architecture](docs/architecture.md).
+
+**What is the production path?** Start by measuring context recall and cost against fixed baselines. Add authenticated tenant identity, distributed state, durable queues, worker isolation, recovery, and provider contract tests before serving customer workloads. The [MCP server](docs/mcp-server.md) is a local installable interface, not a hosted control plane.
 
 ## Relationship to A2Z projects
 
