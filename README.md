@@ -26,6 +26,8 @@ The [numbered workload catalog](docs/100-workloads.md) spans ten domains: licens
 
 The [versioned evaluation standard](docs/evolution-evaluation-standard.md) defines graph construction and GraphRAG tests, deterministic and probabilistic model selection, deep-agent scaling axes, human command capacity, and phase-specific release gates. Its [machine-readable metric matrix](benchmarks/evolution-matrix.json) separates the one implemented synthetic graph fixture from proposed benchmark tracks. The standard compares upstream GraphRAG, memory, computer-use, inference and embodied suites on their own protocols, then adds new system-level challenges without claiming leaderboard superiority. High-assurance and physical-AI profiles are conditional research designs, not deployed or accredited capabilities.
 
+The [protocol interoperability and resilience lab](docs/protocol-interoperability-lab.md) adds a local synthetic trace evaluator for task decisions, tenant-scoped identity, snapshot freshness, bounded offline reads, fail-closed writes, terminal telemetry and duplicate side effects. Run `swarm-context-commander eval-protocol fixtures/protocol-lab.synthetic.json`. Its [profile matrix](benchmarks/protocol-profiles.json) labels BGP/RPKI, native A2A, IAM/PAM, Iceberg/Arrow/OTLP, post-quantum and high-assurance integrations with distinct benchmarks; the executable trace is **not** conformance to any of those standards.
+
 ## Installable interfaces
 
 | Interface | Get started | Scope |
@@ -45,6 +47,7 @@ python3 -m pip install -e .
 swarm-context-commander demo
 swarm-context-commander personalization-demo
 swarm-context-commander eval-graph
+swarm-context-commander eval-protocol fixtures/protocol-lab.synthetic.json
 swarm-context-commander bench-fleet --agents 150000 --active-tasks 10000 --tenants 100
 
 # Or run directly from the checkout without installing:

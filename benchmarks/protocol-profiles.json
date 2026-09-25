@@ -1,0 +1,48 @@
+{
+  "schema_version": "swarmcontext-protocol-profiles/v1",
+  "rule": "Every profile keeps upstream conformance separate from this project's composition result.",
+  "profiles": [
+    {
+      "id": "a2a",
+      "status": "synthetic_trace_only",
+      "upstream": "https://a2a-protocol.org/latest/specification/",
+      "metrics": ["task_lifecycle_compatibility", "cancellation_correctness", "artifact_integrity", "version_negotiation", "cross_vendor_completion", "restart_recovery"],
+      "hard_gate": "No accepted task transition outside the pinned upstream specification"
+    },
+    {
+      "id": "iam_pam",
+      "status": "synthetic_trace_only",
+      "upstream": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "metrics": ["false_grants", "false_denials", "revocation_lag_s", "policy_decision_p99_ms", "stale_policy_window_s", "affected_tenants"],
+      "hard_gate": "No unauthorized high-consequence grant"
+    },
+    {
+      "id": "data_bi",
+      "status": "synthetic_trace_only",
+      "upstream": "https://iceberg.apache.org/spec/",
+      "metrics": ["snapshot_reproducibility", "schema_compatibility", "freshness_lag_s", "lineage_coverage", "telemetry_loss", "cost_per_accepted_analysis"],
+      "hard_gate": "No silently missing source or terminal telemetry for accepted work"
+    },
+    {
+      "id": "bgp_rpki",
+      "status": "proposed_read_only",
+      "upstream": "https://www.rfc-editor.org/info/rfc6811/",
+      "metrics": ["origin_validation_coverage", "false_rejection_rate", "route_convergence_s", "incident_detection_delay_s", "affected_prefixes"],
+      "hard_gate": "No live route mutation by this project"
+    },
+    {
+      "id": "pqc",
+      "status": "proposed_inventory",
+      "upstream": "https://www.nist.gov/pqc",
+      "metrics": ["cryptographic_inventory_coverage", "interoperability_success", "handshake_p99_ms", "rotation_success", "downgrade_detection", "cpu_bytes_overhead"],
+      "hard_gate": "No unvalidated cryptographic implementation represented as certified"
+    },
+    {
+      "id": "high_assurance",
+      "status": "proposed_unclassified_reference",
+      "upstream": "https://www.dcsa.mil/Industrial-Security/NISP-Cybersecurity-Office-NCSO/",
+      "metrics": ["offline_replay_success", "boundary_crossings", "label_propagation", "operator_override_latency", "recovery_time", "evidence_completeness"],
+      "hard_gate": "No classified processing or accreditation claim without owning authority"
+    }
+  ]
+}

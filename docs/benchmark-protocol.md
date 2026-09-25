@@ -2,6 +2,8 @@
 
 For the cross-model, graph, human-interface and high-assurance evaluation contract, see the [evolution and evaluation standard](evolution-evaluation-standard.md) and its [metric matrix](../benchmarks/evolution-matrix.json). `swarm-context-commander eval-graph` is a four-record synthetic scope/revocation fixture, not a GraphRAG score.
 
+For cross-protocol composition, see the [protocol interoperability lab](protocol-interoperability-lab.md). `eval-protocol` has frozen synthetic labels and hard gates but is not a native A2A, IAM, Iceberg or OTLP conformance test.
+
 ## Claims must name a workload
 
 `bench-fleet` tests local registration and in-memory scheduler operations. Run `--agents 150000 --active-tasks 10000 --tenants 100`, record host CPU, RAM, storage type, Python and SQLite versions, and publish raw JSON plus a revision SHA. The benchmark does not measure model, browser, A2A, Cognee or cluster behavior. Do not turn its `logical_agents` count into a concurrent-execution claim.

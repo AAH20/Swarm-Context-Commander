@@ -14,6 +14,7 @@ from .cognee import ingest_chunks, search_local
 from .context import ContextIndex, Memory
 from .evolution import graph_fixture
 from .personalization import demonstration as personalization_demonstration
+from .protocol_lab import evaluate_trace
 from .registry import ContractError, Registry, canonical
 from .scheduler import FairQueue, Work, placement
 from .worker import FixtureAdapter, Job, execute
@@ -57,6 +58,9 @@ def main(argv: list[str] | None = None) -> int:
     personal.add_argument("--output")
     graph = commands.add_parser("eval-graph", help="run the deterministic synthetic graph/scope fixture")
     graph.add_argument("--output")
+    lab = commands.add_parser("eval-protocol", help="replay a local synthetic protocol-composition trace")
+    lab.add_argument("trace_file")
+    lab.add_argument("--output")
     bench = commands.add_parser("bench-fleet", help="benchmark logical registration and in-memory scheduling")
     bench.add_argument("--agents", type=int, default=150000)
     bench.add_argument("--active-tasks", type=int, default=10000)
@@ -79,6 +83,11 @@ def main(argv: list[str] | None = None) -> int:
             result = personalization_demonstration()
         elif args.command == "eval-graph":
             result = graph_fixture()
+        elif args.command == "eval-protocol":
+            trace_file = Path(args.trace_file)
+            if trace_file.stat().st_size > 256_000:
+                raise ContractError("trace exceeds 256 KiB")
+            result = evaluate_trace(json.loads(trace_file.read_text(encoding="utf-8")))
         elif args.command == "bench-fleet":
             result = benchmark_fleet(args.agents, args.active_tasks, args.tenants)
         else:
@@ -100,7 +109,7 @@ def main(argv: list[str] | None = None) -> int:
             print(path)
         else:
             print(output, end="")
-        return 0
+        return 0 if args.command != "eval-protocol" or result["passing"] else 3
     except (ContractError, ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
