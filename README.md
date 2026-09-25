@@ -10,13 +10,13 @@ If you are looking for an **MCP server for agent context**, a reproducible **Gra
 
 ## Personalization Atlas
 
-The [interactive Personalization Atlas](listings/huggingface-space/index.html) demonstrates bounded agent memory across an everyday consumer, an SMB merchant and an enterprise incident team. It animates selected and denied graph nodes, a context budget, and a local feedback-driven policy change. Run the matching inspectable Python baseline with `swarm-context-commander personalization-demo`. The page is a simulation; the Python code implements tenant/agent scope checks and an in-memory UCB1 selector over approved policy variants. Neither trains a model or connects to customer systems.
+The [interactive Context Atlas](listings/huggingface-space/index.html) is an original, dependency-free evidence graph for an everyday consumer, an SMB merchant and an enterprise incident team. Explore typed directed relations, source provenance, scope and trust, token admission, a policy gate, and a measured outcome. Search and filter the graph, inspect nodes or edges, trace paths, drag nodes, pan/zoom, and export the current SVG. Run the matching inspectable Python baseline with `swarm-context-commander personalization-demo`. The page is a simulation; the Python code implements tenant/agent scope checks and an in-memory UCB1 selector over approved policy variants. Neither trains a model or connects to customer systems.
 
-![Neo4j Bloom graph scene — external, attributed visual benchmark](https://neo4j.com/docs/bloom-user-guide/current/_images/bloom-overview.png)
+![Original Context Atlas enterprise graph preview](assets/context-atlas-preview.svg)
 
-*External screenshot from the [Neo4j Bloom user guide](https://neo4j.com/docs/bloom-user-guide/current/bloom-visual-tour/bloom-overview/), hosted by Neo4j. It is a graph UX reference, not a screenshot of this project or an integration claim. The Atlas contains this project's original interactive graph.*
+*Original enterprise scenario preview, generated from the same synthetic graph fixture as the interactive Atlas. Regenerate it with `node scripts/render-atlas-preview.cjs`.*
 
-The [personalization and learning architecture](docs/personalization-and-learning.md) specifies the next gates: supervised ranking and outcome prediction, unsupervised cohort/drift analysis, graph features, causal experiments, constrained bandits and sandboxed RL. It separates implemented baselines from proposed systems and defines recall, accepted work, cost, latency, drift, leakage and subgroup evaluations.
+The [personalization and learning architecture](docs/personalization-and-learning.md) specifies the next gates: supervised ranking and outcome prediction, unsupervised cohort/drift analysis, graph features, causal experiments, constrained bandits and sandboxed RL. It separates implemented baselines from proposed systems and defines recall, accepted work, cost, latency, drift, leakage and subgroup evaluations. The [project reference ledger](docs/project-references.md) names the upstream systems that informed boundaries and the actual integration status of each.
 
 ## Installable interfaces
 

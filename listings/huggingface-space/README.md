@@ -6,14 +6,17 @@ colorTo: blue
 sdk: static
 app_file: index.html
 license: apache-2.0
-short_description: Inspectable AI agent memory and multi-agent context engineering demo
+short_description: Inspectable agent memory and typed evidence graph explorer
 tags:
 - mcp
 - ai-agents
 - context-engineering
+- graph-rag
 - multi-agent-systems
 ---
 
-# Swarm Context Commander
+# Swarm Context Commander — Context Atlas
 
-This static Space illustrates bounded lexical context selection on synthetic records. The Python MCP server, registry, scheduler, and tests live at [AAH20/Swarm-Context-Commander](https://github.com/AAH20/Swarm-Context-Commander). This page does not run a model, GraphRAG service, or a 150K concurrent-agent fleet.
+The static Space is an original, dependency-free SVG explorer of synthetic consumer, SMB and enterprise evidence graphs. Inspect relation types, provenance, scope, trust, policy admission and explanation paths; search, filter, drag, pan, zoom and export an SVG. All feedback remains in browser memory. The Python kernel, tests and [integration status](https://github.com/AAH20/Swarm-Context-Commander/blob/main/docs/project-references.md) live in [AAH20/Swarm-Context-Commander](https://github.com/AAH20/Swarm-Context-Commander).
+
+This page does not run a model, graph database, real GraphRAG retrieval service, live agent fleet or customer data pipeline. Its selection rule is illustrative, while the Python package implements a separate inspectable context compiler and synthetic policy-selection baseline.

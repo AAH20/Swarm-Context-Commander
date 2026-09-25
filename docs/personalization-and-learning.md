@@ -84,7 +84,7 @@ A higher score in a synthetic trace is evidence only that the implementation fol
 
 ## Graph visualization reference
 
-The interactive HTML graph in this repository is original and runs locally. The README and HTML also embed an **external, attributed Neo4j Bloom screenshot** as a visual benchmark for explorable graph UX. The image is owned and hosted by Neo4j; it is not evidence that this repository includes Bloom or a native Cognee graph renderer. [Neo4j Bloom overview](https://neo4j.com/docs/bloom-user-guide/current/bloom-visual-tour/bloom-overview/). The architecture can later plug a Cognee/Neo4j/other graph adapter into the candidate-retrieval boundary, subject to provenance and tenant isolation tests.
+The [Context Atlas](../listings/huggingface-space/index.html) and its [SVG preview](../assets/context-atlas-preview.svg) are original to this repository. They use a synthetic, typed graph fixture shared with the preview generator. The browser explorer can filter relation families, inspect directed edges and node provenance, highlight an explanation path, search, drag, pan, zoom and export SVG. It visually distinguishes admitted, candidate and scope-denied records. It does **not** query a persistent graph, infer relations, execute models or reproduce the Python compiler's exact ranking; the JavaScript selection is an inspectable illustration under a token budget. Integrating Cognee or another graph engine remains subject to provenance, consistency, deletion and tenant isolation tests. See the [reference ledger](project-references.md).
 
 ## Measurement contract
 
