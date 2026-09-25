@@ -10,7 +10,7 @@ If you are looking for an **MCP server for agent context**, a reproducible **Gra
 
 ## Personalization Atlas
 
-The [interactive Context Atlas](listings/huggingface-space/index.html) is an original, dependency-free evidence graph for an everyday consumer, an SMB merchant and an enterprise incident team. Explore typed directed relations, source provenance, scope and trust, token admission, a policy gate, and a measured outcome. Search and filter the graph, inspect nodes or edges, trace paths, drag nodes, pan/zoom, and export the current SVG. Run the matching inspectable Python baseline with `swarm-context-commander personalization-demo`. The page is a simulation; the Python code implements tenant/agent scope checks and an in-memory UCB1 selector over approved policy variants. Neither trains a model or connects to customer systems.
+The [live interactive Context Atlas](https://aah20.github.io/Swarm-Context-Commander/) is an original, dependency-free evidence graph for an everyday consumer, an SMB merchant and an enterprise incident team. Explore typed directed relations, source provenance, scope and trust, token admission, a policy gate, and a measured outcome. Search and filter the graph, inspect nodes or edges, trace paths, drag nodes, pan/zoom, and export the current SVG. Its [source](listings/huggingface-space/index.html) is in this repository. Run the matching inspectable Python baseline with `swarm-context-commander personalization-demo`. The page is a simulation; the Python code implements tenant/agent scope checks and an in-memory UCB1 selector over approved policy variants. Neither trains a model or connects to customer systems.
 
 ![Original Context Atlas enterprise graph preview](assets/context-atlas-preview.svg)
 
