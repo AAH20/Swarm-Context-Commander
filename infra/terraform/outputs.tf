@@ -1,6 +1,6 @@
 output "namespace" {
   description = "Namespace created for a separately deployed runtime."
-  value       = kubernetes_namespace_v1.swarmcontext.metadata[0].name
+  value       = kubernetes_namespace_v1.commander.metadata[0].name
 }
 
 output "admission_config_map" {

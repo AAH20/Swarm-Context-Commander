@@ -9,3 +9,4 @@ outputs/
 .terraform/
 *.tfstate*
 *.tfplan
+.DS_Store

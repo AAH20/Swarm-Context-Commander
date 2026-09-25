@@ -3,13 +3,14 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "swarmcontext-plane"
+name = "swarm-context-commander"
 version = "0.1.0"
 description = "Inspectable context and admission kernel for large logical agent fleets"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 
 [project.scripts]
+swarm-context-commander = "swarmcontext.cli:main"
 swarmcontext = "swarmcontext.cli:main"
 
 [tool.setuptools.packages.find]

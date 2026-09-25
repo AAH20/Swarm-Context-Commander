@@ -3,8 +3,8 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: swarmcontext-cpu-worker
-  namespace: swarmcontext
+  name: swarm-context-commander-cpu-worker
+  namespace: swarm-context-commander
 spec:
   scaleTargetRef:
     name: replace-with-real-worker-deployment
@@ -15,5 +15,5 @@ spec:
     - type: redis
       metadata:
         address: replace-with-real-redis-address:6379
-        listName: swarmcontext-readonly-work
+        listName: swarm-context-commander-readonly-work
         listLength: "10"

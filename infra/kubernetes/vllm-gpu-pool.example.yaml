@@ -3,17 +3,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: swarmcontext-vllm
-  namespace: swarmcontext
+  name: swarm-context-commander-vllm
+  namespace: swarm-context-commander
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: swarmcontext-vllm
+      app: swarm-context-commander-vllm
   template:
     metadata:
       labels:
-        app: swarmcontext-vllm
+        app: swarm-context-commander-vllm
     spec:
       containers:
         - name: vllm

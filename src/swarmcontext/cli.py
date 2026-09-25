@@ -47,7 +47,7 @@ def demo() -> dict:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="swarmcontext")
+    parser = argparse.ArgumentParser(prog="swarm-context-commander")
     commands = parser.add_subparsers(dest="command", required=True)
     run = commands.add_parser("demo", help="run a synthetic local task and context compilation")
     run.add_argument("--output")

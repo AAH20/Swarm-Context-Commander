@@ -1,7 +1,7 @@
 variable "namespace" {
   type        = string
-  description = "Dedicated namespace for an operator-managed SwarmContext installation."
-  default     = "swarmcontext"
+  description = "Dedicated namespace for an operator-managed Swarm-Context-Commander installation."
+  default     = "swarm-context-commander"
 
   validation {
     condition     = can(regex("^[a-z0-9]([-a-z0-9]*[a-z0-9])?$", var.namespace))

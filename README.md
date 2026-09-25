@@ -1,6 +1,6 @@
-# SwarmContext Plane
+# Swarm-Context-Commander
 
-**Inspectable context compilation and admission for large logical-agent fleets.** SwarmContext Plane is a standalone reference kernel for registering virtual agents, admitting idempotent tasks, selecting bounded context, choosing a runtime class, and reserving inference tokens. It is designed to interoperate with A2A agents, Cognee, browser agents, vLLM, Google/AX, and other runtimes without claiming those live integrations are already deployed.
+**Inspectable context compilation and admission for large logical-agent fleets.** Swarm-Context-Commander is a standalone reference kernel for registering virtual agents, admitting idempotent tasks, selecting bounded context, choosing a runtime class, and reserving inference tokens. It is designed to interoperate with A2A agents, Cognee, browser agents, vLLM, Google/AX, and other runtimes without claiming those live integrations are already deployed.
 
 **Current claim:** the repository contains a single-node SQLite registry, in-memory weighted deficit-round-robin scheduler, lexical/graph context baseline, tenant-scoped source-deletion tombstones, bounded loopback Cognee and vLLM clients, A2A-inspired task sidecar, executable synthetic computer-use worker, Terraform configuration module, and explicit infrastructure examples. The 150,000-agent benchmark registers *logical descriptors*; it does **not** run 150,000 models or browsers. All data in the demo and benchmark is synthetic.
 
@@ -9,6 +9,11 @@
 From the repository root with Python 3.10+:
 
 ```bash
+python3 -m pip install -e .
+swarm-context-commander demo
+swarm-context-commander bench-fleet --agents 150000 --active-tasks 10000 --tenants 100
+
+# Or run directly from the checkout without installing:
 PYTHONPATH=src python3 -m swarmcontext demo
 PYTHONPATH=src python3 -m unittest discover -s tests -v
 PYTHONPATH=src python3 -m swarmcontext bench-fleet \
@@ -20,7 +25,7 @@ PYTHONPATH=src python3 -m swarmcontext context-cognee \
   --output outputs/context-synthetic.json
 ```
 
-The benchmark reports registration, enqueue, and drain times for the local process and SQLite file. It labels A2A throughput, browser concurrency, Cognee latency, vLLM throughput, distributed recovery, and GPU economics as **not measured**. A working `pip install -e .` also exposes `swarmcontext`.
+The benchmark reports registration, enqueue, and drain times for the local process and SQLite file. It labels A2A throughput, browser concurrency, Cognee latency, vLLM throughput, distributed recovery, and GPU economics as **not measured**. A working `pip install -e .` exposes `swarm-context-commander`; the existing `swarmcontext` command remains an alias.
 
 The [first local 150k-logical-agent result](benchmarks/results/local-150k-2026-09-25.json) is a single macOS/arm64 run: 150,000 descriptors registered in 2.6023 seconds and 10,000 synthetic queued tasks drained in 0.0165 seconds. Those timings exclude network, model inference, browser execution and multi-node coordination; rerun them on your own hardware before using them in capacity planning.
 
@@ -57,7 +62,7 @@ An agent record is not a process. Agents become active only when a task obtains 
 | Inference | Hard in-flight token reservations, tenant-scoped prefix-cache salt, opt-in loopback vLLM-compatible chat request | No GPU scheduler, vLLM benchmark or live model call in CI |
 | Interoperability | A2A-inspired task sidecar, synthetic worker, normalized computer-use receipts and opt-in local Cognee CHUNKS HTTP adapter | HTTP contract is mocked in CI; not full A2A conformance or native computer-use execution |
 
-The A2A [specification](https://github.com/a2aproject/A2A/blob/main/docs/specification.md) defines actual Task, Message, Artifact and operation semantics. This repository's sidecar is deliberately labeled **A2A-inspired**, so it cannot be mistaken for a conformance implementation. The vLLM `cache_salt` request parameter follows [vLLM prefix-cache isolation](https://docs.vllm.ai/en/latest/design/prefix_caching/); the opt-in local HTTP path requires a private `SWARMCONTEXT_CACHE_SALT_SECRET` to derive tenant-specific salts. An authenticated gateway must bind tenant identity; a caller-supplied tenant string is not an authorization mechanism. Application-level request grouping does not replace vLLM's own continuous batching.
+The A2A [specification](https://github.com/a2aproject/A2A/blob/main/docs/specification.md) defines actual Task, Message, Artifact and operation semantics. This repository's sidecar is deliberately labeled **A2A-inspired**, so it cannot be mistaken for a conformance implementation. The vLLM `cache_salt` request parameter follows [vLLM prefix-cache isolation](https://docs.vllm.ai/en/latest/design/prefix_caching/); the opt-in local HTTP path requires a private `SWARM_CONTEXT_COMMANDER_CACHE_SALT_SECRET` to derive tenant-specific salts. The former `SWARMCONTEXT_CACHE_SALT_SECRET` name remains a compatibility fallback. An authenticated gateway must bind tenant identity; a caller-supplied tenant string is not an authorization mechanism. Application-level request grouping does not replace vLLM's own continuous batching.
 
 ## Scale and cost accounting
 

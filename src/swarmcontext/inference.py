@@ -86,7 +86,8 @@ def local_vllm_chat(base_url: str, item: InferenceRequest, messages: list[dict],
         raise ContractError("vLLM URL must be a local HTTP origin")
     if not allow_network:
         raise ContractError("explicit network opt-in required")
-    secret = os.environ.get("SWARMCONTEXT_CACHE_SALT_SECRET", "")
+    secret = (os.environ.get("SWARM_CONTEXT_COMMANDER_CACHE_SALT_SECRET")
+              or os.environ.get("SWARMCONTEXT_CACHE_SALT_SECRET", ""))
     if len(secret) < 32:
         raise ContractError("local vLLM call requires a 32+ character cache salt secret")
     if not isinstance(messages, list) or len(messages) > 16 or any(
