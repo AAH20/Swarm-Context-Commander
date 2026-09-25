@@ -14,7 +14,7 @@ If you are looking for an **MCP server for agent context**, a reproducible **Gra
 | --- | --- | --- |
 | Python CLI | `pip install .` then `swarm-context-commander demo` | Local synthetic end-to-end example |
 | MCP server | `pip install '.[mcp]'` then `swarm-context-mcp` | Two stdio tools for inline context and placement; [configuration](docs/mcp-server.md) |
-| Agent skill | `npx skills add AAH20/Swarm-Context-Commander --skill agent-context-engineering` | [Reusable benchmark and context workflow](skills/agent-context-engineering/SKILL.md) |
+| Agent skill | `npx skills add AAH20/Swarm-Context-Commander --skill agent-context-engineering` | [skills.sh listing](https://skills.sh/aah20/swarm-context-commander/agent-context-engineering) and [source](skills/agent-context-engineering/SKILL.md) |
 
 The MCP server and skill are installable from this repository. Public package-registry and hosted listings have separate publication status; the presence of a `server.json` manifest alone does not make an MCP Registry entry.
 

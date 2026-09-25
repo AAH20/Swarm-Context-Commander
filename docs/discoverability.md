@@ -14,3 +14,5 @@ Distribution surfaces and requirements:
 | Smithery | Hosted URL or MCPB bundle | Requires supported deployment and publisher authentication |
 
 The Hugging Face page is an illustrative JavaScript demo. Its selection logic and metrics are not a substitute for the Python package tests. The official MCP Registry manifest will be added only with a real versioned public package, so directory metadata never promises an unavailable install.
+
+As of September 25, 2026, the [skills.sh page](https://skills.sh/aah20/swarm-context-commander/agent-context-engineering) is live and [awesome-mcp-servers PR #15068](https://github.com/punkpeye/awesome-mcp-servers/pull/15068) is open. That list requires a Glama listing and badge before merge. Glama currently asks for signup before server submission. PulseMCP has paused new submissions; MCP.so currently presents a paid submission path. None of those pending surfaces is described as a published listing.
