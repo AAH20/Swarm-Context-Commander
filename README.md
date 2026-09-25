@@ -8,6 +8,16 @@ If you are looking for an **MCP server for agent context**, a reproducible **Gra
 
 **Current claim:** the repository contains a single-node SQLite registry, in-memory weighted deficit-round-robin scheduler, lexical/graph context baseline, tenant-scoped source-deletion tombstones, bounded loopback Cognee and vLLM clients, A2A-inspired task sidecar, executable synthetic computer-use worker, local MCP server, Terraform configuration module, and explicit infrastructure examples. The 150,000-agent benchmark registers *logical descriptors*; it does **not** run 150,000 models or browsers. All data in the demo and benchmark is synthetic.
 
+## Personalization Atlas
+
+The [interactive Personalization Atlas](listings/huggingface-space/index.html) demonstrates bounded agent memory across an everyday consumer, an SMB merchant and an enterprise incident team. It animates selected and denied graph nodes, a context budget, and a local feedback-driven policy change. Run the matching inspectable Python baseline with `swarm-context-commander personalization-demo`. The page is a simulation; the Python code implements tenant/agent scope checks and an in-memory UCB1 selector over approved policy variants. Neither trains a model or connects to customer systems.
+
+![Neo4j Bloom graph scene — external, attributed visual benchmark](https://neo4j.com/docs/bloom-user-guide/current/_images/bloom-overview.png)
+
+*External screenshot from the [Neo4j Bloom user guide](https://neo4j.com/docs/bloom-user-guide/current/bloom-visual-tour/bloom-overview/), hosted by Neo4j. It is a graph UX reference, not a screenshot of this project or an integration claim. The Atlas contains this project's original interactive graph.*
+
+The [personalization and learning architecture](docs/personalization-and-learning.md) specifies the next gates: supervised ranking and outcome prediction, unsupervised cohort/drift analysis, graph features, causal experiments, constrained bandits and sandboxed RL. It separates implemented baselines from proposed systems and defines recall, accepted work, cost, latency, drift, leakage and subgroup evaluations.
+
 ## Installable interfaces
 
 | Interface | Get started | Scope |
@@ -25,6 +35,7 @@ From the repository root with Python 3.10+:
 ```bash
 python3 -m pip install -e .
 swarm-context-commander demo
+swarm-context-commander personalization-demo
 swarm-context-commander bench-fleet --agents 150000 --active-tasks 10000 --tenants 100
 
 # Or run directly from the checkout without installing:

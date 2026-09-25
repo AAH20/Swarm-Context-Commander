@@ -12,6 +12,7 @@ from pathlib import Path
 from .benchmark import benchmark_fleet
 from .cognee import ingest_chunks, search_local
 from .context import ContextIndex, Memory
+from .personalization import demonstration as personalization_demonstration
 from .registry import ContractError, Registry, canonical
 from .scheduler import FairQueue, Work, placement
 from .worker import FixtureAdapter, Job, execute
@@ -51,6 +52,8 @@ def main(argv: list[str] | None = None) -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     run = commands.add_parser("demo", help="run a synthetic local task and context compilation")
     run.add_argument("--output")
+    personal = commands.add_parser("personalization-demo", help="run synthetic consumer, SMB and enterprise policy learning")
+    personal.add_argument("--output")
     bench = commands.add_parser("bench-fleet", help="benchmark logical registration and in-memory scheduling")
     bench.add_argument("--agents", type=int, default=150000)
     bench.add_argument("--active-tasks", type=int, default=10000)
@@ -69,6 +72,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "demo":
             result = demo()
+        elif args.command == "personalization-demo":
+            result = personalization_demonstration()
         elif args.command == "bench-fleet":
             result = benchmark_fleet(args.agents, args.active_tasks, args.tenants)
         else:
