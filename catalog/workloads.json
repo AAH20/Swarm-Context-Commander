@@ -1,0 +1,1006 @@
+{
+  "schema_version": "swarmcontext-workloads/v1",
+  "claim": "planning_catalog_only",
+  "workloads": [
+    {
+      "id": "001",
+      "domain": "Licensed data",
+      "workload": "Bloomberg market-data entitlement ledger",
+      "inputs": "Bloomberg Data License or approved API contracts, instrument IDs",
+      "evaluation": "entitlement violations; feed freshness",
+      "unit_economics": "cost per entitled instrument-day",
+      "phase": "P1",
+      "gate": "No Terminal scraping or unlicensed reuse"
+    },
+    {
+      "id": "002",
+      "domain": "Licensed data",
+      "workload": "Orbis and former Osiris company graph",
+      "inputs": "licensed Moody's Orbis exports, company IDs",
+      "evaluation": "entity precision; ownership freshness",
+      "unit_economics": "cost per verified company record",
+      "phase": "P1",
+      "gate": "Contract rights and human review"
+    },
+    {
+      "id": "003",
+      "domain": "Licensed data",
+      "workload": "Argos Atlas geospatial-risk ingest",
+      "inputs": "licensed Argos Atlas API, permitted map layers",
+      "evaluation": "geocode accuracy; event freshness",
+      "unit_economics": "cost per reviewed geospatial alert",
+      "phase": "P1",
+      "gate": "API rights and geographic privacy"
+    },
+    {
+      "id": "004",
+      "domain": "Licensed data",
+      "workload": "Public filing change monitor",
+      "inputs": "SEC or equivalent public filings, issuer IDs",
+      "evaluation": "material-change recall; false alert rate",
+      "unit_economics": "cost per accepted filing insight",
+      "phase": "P0",
+      "gate": "Source citation and jurisdiction labels"
+    },
+    {
+      "id": "005",
+      "domain": "Licensed data",
+      "workload": "Cross-border corporate registry normalization",
+      "inputs": "licensed registries, legal entity identifiers",
+      "evaluation": "entity-match precision; duplicate rate",
+      "unit_economics": "cost per resolved legal entity",
+      "phase": "P1",
+      "gate": "Jurisdiction-specific reuse rights"
+    },
+    {
+      "id": "006",
+      "domain": "Licensed data",
+      "workload": "Procurement-award intelligence",
+      "inputs": "official tender feeds, contract notices",
+      "evaluation": "award-link precision; lead time",
+      "unit_economics": "cost per verified opportunity",
+      "phase": "P1",
+      "gate": "No confidential bid inference"
+    },
+    {
+      "id": "007",
+      "domain": "Licensed data",
+      "workload": "Patent and research landscape",
+      "inputs": "patent offices, publications, assignee IDs",
+      "evaluation": "citation recall; assignee resolution",
+      "unit_economics": "cost per reviewed technology cluster",
+      "phase": "P0",
+      "gate": "Provenance and date validity"
+    },
+    {
+      "id": "008",
+      "domain": "Licensed data",
+      "workload": "Supplier exposure signals",
+      "inputs": "consented supplier records, permitted news feeds",
+      "evaluation": "supplier event precision; detection delay",
+      "unit_economics": "cost per reviewed supplier alert",
+      "phase": "P1",
+      "gate": "No unsupported adverse claims"
+    },
+    {
+      "id": "009",
+      "domain": "Licensed data",
+      "workload": "Licensed news and transcript synthesis",
+      "inputs": "licensed news and transcripts, timestamped source IDs",
+      "evaluation": "grounding precision; update latency",
+      "unit_economics": "cost per accepted analyst brief",
+      "phase": "P1",
+      "gate": "Copyright and retention limits"
+    },
+    {
+      "id": "010",
+      "domain": "Licensed data",
+      "workload": "Data-rights and lineage registry",
+      "inputs": "contracts, permitted datasets, transformations",
+      "evaluation": "rights coverage; deletion propagation",
+      "unit_economics": "cost per governed dataset-month",
+      "phase": "P0",
+      "gate": "No training without explicit rights"
+    },
+    {
+      "id": "011",
+      "domain": "Continuous BI",
+      "workload": "Temporal lakehouse and Iceberg snapshots",
+      "inputs": "consented events, versioned tables",
+      "evaluation": "query freshness; reproducibility",
+      "unit_economics": "cost per query and stored terabyte-month",
+      "phase": "P1",
+      "gate": "Tenant isolation and retention"
+    },
+    {
+      "id": "012",
+      "domain": "Continuous BI",
+      "workload": "Identity and entity resolution pipeline",
+      "inputs": "CRM, ERP, registry and partner IDs",
+      "evaluation": "match precision and recall",
+      "unit_economics": "cost per resolved entity",
+      "phase": "P0",
+      "gate": "Human merge review and reversibility"
+    },
+    {
+      "id": "013",
+      "domain": "Continuous BI",
+      "workload": "Metric semantic layer",
+      "inputs": "finance, product and operations event definitions",
+      "evaluation": "metric consistency; lineage completeness",
+      "unit_economics": "cost per governed KPI-month",
+      "phase": "P0",
+      "gate": "Approved denominator definitions"
+    },
+    {
+      "id": "014",
+      "domain": "Continuous BI",
+      "workload": "Causal KPI attribution",
+      "inputs": "experiment assignment, outcomes, covariates",
+      "evaluation": "lift interval; randomization integrity",
+      "unit_economics": "cost per valid experiment",
+      "phase": "P1",
+      "gate": "No causal claim from correlation"
+    },
+    {
+      "id": "015",
+      "domain": "Continuous BI",
+      "workload": "Streaming anomaly triage",
+      "inputs": "consented event streams, seasonal baselines",
+      "evaluation": "precision at alert budget; delay",
+      "unit_economics": "cost per accepted anomaly",
+      "phase": "P1",
+      "gate": "Human disposition labels"
+    },
+    {
+      "id": "016",
+      "domain": "Continuous BI",
+      "workload": "Probabilistic demand forecast",
+      "inputs": "sales, capacity, calendar signals",
+      "evaluation": "calibration; forecast error",
+      "unit_economics": "cost per forecasted SKU-week",
+      "phase": "P1",
+      "gate": "Drift and stockout monitoring"
+    },
+    {
+      "id": "017",
+      "domain": "Continuous BI",
+      "workload": "Graph-based dependency impact",
+      "inputs": "service map, supplier graph, events",
+      "evaluation": "path recall; impact precision",
+      "unit_economics": "cost per verified dependency path",
+      "phase": "P1",
+      "gate": "Source-linked edges"
+    },
+    {
+      "id": "018",
+      "domain": "Continuous BI",
+      "workload": "Cohort economics workbench",
+      "inputs": "consented acquisition and retention events",
+      "evaluation": "cohort stability; LTV calibration",
+      "unit_economics": "cost per analyzed cohort",
+      "phase": "P1",
+      "gate": "No protected-trait targeting"
+    },
+    {
+      "id": "019",
+      "domain": "Continuous BI",
+      "workload": "Executive decision briefing",
+      "inputs": "versioned KPIs, annotated evidence",
+      "evaluation": "citation accuracy; decision usefulness",
+      "unit_economics": "cost per accepted briefing",
+      "phase": "P0",
+      "gate": "Analyst signoff"
+    },
+    {
+      "id": "020",
+      "domain": "Continuous BI",
+      "workload": "Continuous unit-economics reconciliation",
+      "inputs": "ledger, cloud bill, model usage, outcomes",
+      "evaluation": "cost allocation coverage; variance",
+      "unit_economics": "cost per independently accepted task",
+      "phase": "P0",
+      "gate": "Include license, idle and review cost"
+    },
+    {
+      "id": "021",
+      "domain": "Synthetic data",
+      "workload": "Clean-room fixture compiler",
+      "inputs": "schema contracts, synthetic generators",
+      "evaluation": "schema coverage; reproducibility",
+      "unit_economics": "cost per validated fixture",
+      "phase": "P0",
+      "gate": "No real secret leakage"
+    },
+    {
+      "id": "022",
+      "domain": "Synthetic data",
+      "workload": "Privacy-preserving tabular synthesis",
+      "inputs": "consented source statistics, constraints",
+      "evaluation": "utility gap; membership-inference risk",
+      "unit_economics": "cost per usable synthetic row",
+      "phase": "P1",
+      "gate": "Privacy attack assessment"
+    },
+    {
+      "id": "023",
+      "domain": "Synthetic data",
+      "workload": "Synthetic document corpus",
+      "inputs": "licensed templates, fictional entities",
+      "evaluation": "task realism; citation consistency",
+      "unit_economics": "cost per validated document",
+      "phase": "P0",
+      "gate": "License and memorization tests"
+    },
+    {
+      "id": "024",
+      "domain": "Synthetic data",
+      "workload": "Knowledge-graph scenario generator",
+      "inputs": "typed ontology, synthetic relation rules",
+      "evaluation": "constraint validity; path diversity",
+      "unit_economics": "cost per valid graph scenario",
+      "phase": "P0",
+      "gate": "No real identity reconstruction"
+    },
+    {
+      "id": "025",
+      "domain": "Synthetic data",
+      "workload": "Time-series incident replay",
+      "inputs": "sanitized telemetry, simulated outages",
+      "evaluation": "temporal fidelity; replay determinism",
+      "unit_economics": "cost per replayed incident",
+      "phase": "P0",
+      "gate": "Isolated nonproduction environment"
+    },
+    {
+      "id": "026",
+      "domain": "Synthetic data",
+      "workload": "Synthetic browser and ERP sandbox",
+      "inputs": "mock websites, fictional transactions",
+      "evaluation": "state-transition coverage; rollback",
+      "unit_economics": "cost per completed sandbox task",
+      "phase": "P0",
+      "gate": "No live financial side effects"
+    },
+    {
+      "id": "027",
+      "domain": "Synthetic data",
+      "workload": "Robot digital-twin scenario pack",
+      "inputs": "simulated sensors, objects and failures",
+      "evaluation": "sim-to-real gap; safety coverage",
+      "unit_economics": "cost per evaluated episode",
+      "phase": "P2",
+      "gate": "No autonomous physical deployment"
+    },
+    {
+      "id": "028",
+      "domain": "Synthetic data",
+      "workload": "Multimodal annotation quality lab",
+      "inputs": "licensed images, audio, text, consent flags",
+      "evaluation": "inter-rater agreement; label error",
+      "unit_economics": "cost per verified annotation",
+      "phase": "P1",
+      "gate": "Biometric consent and minimization"
+    },
+    {
+      "id": "029",
+      "domain": "Synthetic data",
+      "workload": "Adversarial prompt and tool fixture suite",
+      "inputs": "synthetic prompts, tool schemas, decoys",
+      "evaluation": "attack detection recall; benign pass rate",
+      "unit_economics": "cost per validated test case",
+      "phase": "P0",
+      "gate": "Authorized defensive evaluation only"
+    },
+    {
+      "id": "030",
+      "domain": "Synthetic data",
+      "workload": "Training-data suitability score",
+      "inputs": "dataset rights, quality, contamination probes",
+      "evaluation": "contamination rate; rights coverage",
+      "unit_economics": "cost per approved dataset",
+      "phase": "P1",
+      "gate": "Explicit model-training rights"
+    },
+    {
+      "id": "031",
+      "domain": "Audience lab",
+      "workload": "Synthetic audience hypothesis studio",
+      "inputs": "consented research, fictional agents, product brief",
+      "evaluation": "hypothesis diversity; real-world calibration",
+      "unit_economics": "cost per tested hypothesis",
+      "phase": "P0",
+      "gate": "Synthetic reaction is not demand proof"
+    },
+    {
+      "id": "032",
+      "domain": "Audience lab",
+      "workload": "Product-market fit interview planner",
+      "inputs": "consented interviews, survey evidence",
+      "evaluation": "question coverage; insight accuracy",
+      "unit_economics": "cost per accepted interview plan",
+      "phase": "P0",
+      "gate": "No fabricated respondent claims"
+    },
+    {
+      "id": "033",
+      "domain": "Audience lab",
+      "workload": "Price-elasticity experiment designer",
+      "inputs": "prices, randomized offers, outcomes",
+      "evaluation": "elasticity interval; revenue lift",
+      "unit_economics": "cost per valid price experiment",
+      "phase": "P1",
+      "gate": "Fair pricing and human approval"
+    },
+    {
+      "id": "034",
+      "domain": "Audience lab",
+      "workload": "Conversion funnel diagnosis",
+      "inputs": "consented product analytics, page events",
+      "evaluation": "drop-off attribution; experiment lift",
+      "unit_economics": "cost per verified funnel insight",
+      "phase": "P1",
+      "gate": "Consent and cohort minimums"
+    },
+    {
+      "id": "035",
+      "domain": "Audience lab",
+      "workload": "Recommendation quality simulator",
+      "inputs": "catalog, opt-in interactions, holdout set",
+      "evaluation": "nDCG; incremental utility; diversity",
+      "unit_economics": "cost per accepted recommendation",
+      "phase": "P1",
+      "gate": "No manipulative personalization"
+    },
+    {
+      "id": "036",
+      "domain": "Audience lab",
+      "workload": "Launch messaging test bench",
+      "inputs": "product claims, consented survey panels",
+      "evaluation": "claim comprehension; confidence interval",
+      "unit_economics": "cost per tested message",
+      "phase": "P1",
+      "gate": "No deceptive claims"
+    },
+    {
+      "id": "037",
+      "domain": "Audience lab",
+      "workload": "Onboarding friction mapper",
+      "inputs": "session events, support tickets",
+      "evaluation": "time-to-value; abandonment cause",
+      "unit_economics": "cost per resolved friction point",
+      "phase": "P1",
+      "gate": "PII minimization"
+    },
+    {
+      "id": "038",
+      "domain": "Audience lab",
+      "workload": "Churn prevention decision support",
+      "inputs": "consented account history, service events",
+      "evaluation": "retention lift; false outreach rate",
+      "unit_economics": "cost per retained consenting account",
+      "phase": "P1",
+      "gate": "No discriminatory offers"
+    },
+    {
+      "id": "039",
+      "domain": "Audience lab",
+      "workload": "Regional demand scenario analysis",
+      "inputs": "public statistics, opted-in customer evidence",
+      "evaluation": "forecast calibration by region",
+      "unit_economics": "cost per validated region forecast",
+      "phase": "P2",
+      "gate": "Avoid person-level surveillance"
+    },
+    {
+      "id": "040",
+      "domain": "Audience lab",
+      "workload": "Investor-pitch assumption stress test",
+      "inputs": "financial model, market evidence, objections",
+      "evaluation": "unsupported-claim rate; scenario coverage",
+      "unit_economics": "cost per reviewed pitch model",
+      "phase": "P0",
+      "gate": "No invented traction"
+    },
+    {
+      "id": "041",
+      "domain": "Due diligence",
+      "workload": "Customer-fit evidence graph",
+      "inputs": "consented needs, product capability, contract scope",
+      "evaluation": "fit precision; pilot conversion",
+      "unit_economics": "cost per qualified pilot",
+      "phase": "P1",
+      "gate": "No automated high-impact eligibility"
+    },
+    {
+      "id": "042",
+      "domain": "Due diligence",
+      "workload": "Investor thesis matching",
+      "inputs": "public investor thesis, founder-approved deck",
+      "evaluation": "match precision; useful introduction rate",
+      "unit_economics": "cost per founder-approved match",
+      "phase": "P1",
+      "gate": "No private investor profiling"
+    },
+    {
+      "id": "043",
+      "domain": "Due diligence",
+      "workload": "Beneficial-ownership review workspace",
+      "inputs": "licensed registry data, legal entity documents",
+      "evaluation": "ownership completeness; reviewer correction",
+      "unit_economics": "cost per reviewed ownership chain",
+      "phase": "P1",
+      "gate": "Licensed data and legal review"
+    },
+    {
+      "id": "044",
+      "domain": "Due diligence",
+      "workload": "Financial statement variance review",
+      "inputs": "authorized statements, audited references",
+      "evaluation": "material variance recall; false flags",
+      "unit_economics": "cost per analyst-approved variance",
+      "phase": "P1",
+      "gate": "No investment advice automation"
+    },
+    {
+      "id": "045",
+      "domain": "Due diligence",
+      "workload": "Vendor and supplier risk packet",
+      "inputs": "contracts, SLAs, verified public evidence",
+      "evaluation": "risk-evidence completeness; freshness",
+      "unit_economics": "cost per approved vendor packet",
+      "phase": "P1",
+      "gate": "Human procurement decision"
+    },
+    {
+      "id": "046",
+      "domain": "Due diligence",
+      "workload": "Data-room completeness checker",
+      "inputs": "authorized deal documents, checklist",
+      "evaluation": "missing-item recall; access audit",
+      "unit_economics": "cost per reviewed data room",
+      "phase": "P1",
+      "gate": "Deal confidentiality"
+    },
+    {
+      "id": "047",
+      "domain": "Due diligence",
+      "workload": "Contract obligation extraction",
+      "inputs": "authorized agreements, clause taxonomy",
+      "evaluation": "obligation precision; date accuracy",
+      "unit_economics": "cost per lawyer-reviewed contract",
+      "phase": "P1",
+      "gate": "Lawyer signoff and privilege controls"
+    },
+    {
+      "id": "048",
+      "domain": "Due diligence",
+      "workload": "Acquisition integration scenario model",
+      "inputs": "authorized operations, systems inventory",
+      "evaluation": "integration forecast error; dependency coverage",
+      "unit_economics": "cost per reviewed integration scenario",
+      "phase": "P2",
+      "gate": "No undisclosed deal data"
+    },
+    {
+      "id": "049",
+      "domain": "Due diligence",
+      "workload": "Capital-efficiency benchmark",
+      "inputs": "approved financials, peer definitions",
+      "evaluation": "normalization accuracy; interval width",
+      "unit_economics": "cost per reviewed comparable set",
+      "phase": "P1",
+      "gate": "Peer-data license"
+    },
+    {
+      "id": "050",
+      "domain": "Due diligence",
+      "workload": "Adverse-event evidence reconciliation",
+      "inputs": "permitted media, company statements, filings",
+      "evaluation": "false allegation rate; source conflicts",
+      "unit_economics": "cost per human-reviewed finding",
+      "phase": "P1",
+      "gate": "Defamation and identity safeguards"
+    },
+    {
+      "id": "051",
+      "domain": "Computer use",
+      "workload": "Read-only website QA agent",
+      "inputs": "test site, fixture accounts, accessibility tree",
+      "evaluation": "accepted defect recall; false defects",
+      "unit_economics": "cost per verified defect",
+      "phase": "P0",
+      "gate": "Test-only accounts"
+    },
+    {
+      "id": "052",
+      "domain": "Computer use",
+      "workload": "CRM record reconciliation",
+      "inputs": "authorized CRM export, task queue",
+      "evaluation": "match accuracy; duplicate write rate",
+      "unit_economics": "cost per corrected record",
+      "phase": "P1",
+      "gate": "Approval before write"
+    },
+    {
+      "id": "053",
+      "domain": "Computer use",
+      "workload": "ERP exception triage",
+      "inputs": "authorized invoices, purchase orders, ERP states",
+      "evaluation": "exception precision; cycle time",
+      "unit_economics": "cost per reviewer-accepted exception",
+      "phase": "P1",
+      "gate": "No autonomous payment"
+    },
+    {
+      "id": "054",
+      "domain": "Computer use",
+      "workload": "Support case resolution assistant",
+      "inputs": "consented tickets, knowledge base, outcomes",
+      "evaluation": "accepted resolution; rework rate",
+      "unit_economics": "cost per accepted case",
+      "phase": "P1",
+      "gate": "Escalation for high-stakes cases"
+    },
+    {
+      "id": "055",
+      "domain": "Computer use",
+      "workload": "Procurement quote comparison",
+      "inputs": "approved quotes, specifications",
+      "evaluation": "comparison coverage; arithmetic accuracy",
+      "unit_economics": "cost per approved sourcing packet",
+      "phase": "P1",
+      "gate": "Human award decision"
+    },
+    {
+      "id": "056",
+      "domain": "Computer use",
+      "workload": "Account onboarding checklist",
+      "inputs": "authorized forms, identity status, task state",
+      "evaluation": "completion rate; error rate",
+      "unit_economics": "cost per completed onboarding",
+      "phase": "P1",
+      "gate": "No automated legal eligibility"
+    },
+    {
+      "id": "057",
+      "domain": "Computer use",
+      "workload": "Code-change evidence agent",
+      "inputs": "repository, tests, issue tracker",
+      "evaluation": "test pass; review corrections",
+      "unit_economics": "cost per accepted pull request",
+      "phase": "P1",
+      "gate": "Sandbox and human merge"
+    },
+    {
+      "id": "058",
+      "domain": "Computer use",
+      "workload": "Browser task recovery harness",
+      "inputs": "synthetic website, failure injection",
+      "evaluation": "recovery rate; duplicate action rate",
+      "unit_economics": "cost per recovered task",
+      "phase": "P0",
+      "gate": "Idempotency and rollback"
+    },
+    {
+      "id": "059",
+      "domain": "Computer use",
+      "workload": "Cross-app workflow replay",
+      "inputs": "approved app mocks, A2A or MCP receipts",
+      "evaluation": "trace completeness; state consistency",
+      "unit_economics": "cost per reproducible workflow",
+      "phase": "P1",
+      "gate": "Credential isolation"
+    },
+    {
+      "id": "060",
+      "domain": "Computer use",
+      "workload": "Human handoff scheduler",
+      "inputs": "approved task queue, reviewer availability",
+      "evaluation": "handoff delay; acceptance rate",
+      "unit_economics": "cost per human-approved handoff",
+      "phase": "P1",
+      "gate": "Human authority retained"
+    },
+    {
+      "id": "061",
+      "domain": "Agent fleet",
+      "workload": "Logical agent registry benchmark",
+      "inputs": "synthetic descriptors, tenant IDs",
+      "evaluation": "registration throughput; collision rate",
+      "unit_economics": "cost per registered logical agent",
+      "phase": "P0",
+      "gate": "Do not claim active concurrency"
+    },
+    {
+      "id": "062",
+      "domain": "Agent fleet",
+      "workload": "Fair task admission benchmark",
+      "inputs": "tenant queues, token estimates",
+      "evaluation": "fairness; starvation; p95 queue delay",
+      "unit_economics": "cost per admitted task",
+      "phase": "P0",
+      "gate": "Quota and overload tests"
+    },
+    {
+      "id": "063",
+      "domain": "Agent fleet",
+      "workload": "Budgeted context compiler",
+      "inputs": "source-linked candidate records, policy",
+      "evaluation": "recall at budget; leakage rate",
+      "unit_economics": "cost per accepted context bundle",
+      "phase": "P0",
+      "gate": "Scope checks before ranking"
+    },
+    {
+      "id": "064",
+      "domain": "Agent fleet",
+      "workload": "GraphRAG retrieval comparison",
+      "inputs": "licensed corpus, labeled graph paths",
+      "evaluation": "path recall; grounding; latency",
+      "unit_economics": "cost per grounded answer",
+      "phase": "P1",
+      "gate": "Graph provenance and deletion"
+    },
+    {
+      "id": "065",
+      "domain": "Agent fleet",
+      "workload": "Adaptive context policy selector",
+      "inputs": "approved policies, independent feedback",
+      "evaluation": "regret; accepted work; guardrail breaches",
+      "unit_economics": "cost per accepted task",
+      "phase": "P0",
+      "gate": "No self-authorizing policy changes"
+    },
+    {
+      "id": "066",
+      "domain": "Agent fleet",
+      "workload": "A2A interoperability harness",
+      "inputs": "official protocol fixtures, agent tasks",
+      "evaluation": "conformance pass rate; recovery",
+      "unit_economics": "cost per interoperable task",
+      "phase": "P1",
+      "gate": "Official version pinning"
+    },
+    {
+      "id": "067",
+      "domain": "Agent fleet",
+      "workload": "MCP tool governance plane",
+      "inputs": "approved tool schemas, invocations",
+      "evaluation": "unauthorized call rate; tool latency",
+      "unit_economics": "cost per accepted tool invocation",
+      "phase": "P1",
+      "gate": "Authenticated principal binding"
+    },
+    {
+      "id": "068",
+      "domain": "Agent fleet",
+      "workload": "vLLM inference admission router",
+      "inputs": "model pool, token reservations, load metrics",
+      "evaluation": "TTFT; throughput; cache isolation",
+      "unit_economics": "cost per million accepted tokens",
+      "phase": "P1",
+      "gate": "Measured GPU economics"
+    },
+    {
+      "id": "069",
+      "domain": "Agent fleet",
+      "workload": "Serverless-container-VM placement",
+      "inputs": "task traits, capacity, isolation needs",
+      "evaluation": "SLO pass; placement errors",
+      "unit_economics": "cost per completed task",
+      "phase": "P1",
+      "gate": "Sandbox and warm-start tests"
+    },
+    {
+      "id": "070",
+      "domain": "Agent fleet",
+      "workload": "Multi-tenant recovery drill",
+      "inputs": "durable task log, worker crash fixtures",
+      "evaluation": "recovery point; duplicate side effects",
+      "unit_economics": "cost per recovered task",
+      "phase": "P1",
+      "gate": "Fencing and audit replay"
+    },
+    {
+      "id": "071",
+      "domain": "Physical AI",
+      "workload": "Robot handover safety recorder",
+      "inputs": "lab sensor stream, consented video, commands",
+      "evaluation": "unsafe handover recall; evidence gaps",
+      "unit_economics": "cost per validated handover episode",
+      "phase": "P2",
+      "gate": "Human stop and lab only"
+    },
+    {
+      "id": "072",
+      "domain": "Physical AI",
+      "workload": "Warehouse pick quality monitor",
+      "inputs": "simulated or consented robot telemetry",
+      "evaluation": "pick success; damage; intervention",
+      "unit_economics": "cost per accepted pick",
+      "phase": "P2",
+      "gate": "Worker safety review"
+    },
+    {
+      "id": "073",
+      "domain": "Physical AI",
+      "workload": "VLA policy evaluation sandbox",
+      "inputs": "simulator trajectories, approved task goals",
+      "evaluation": "success; near miss; OOD failure",
+      "unit_economics": "cost per evaluated episode",
+      "phase": "P2",
+      "gate": "No direct field actuation"
+    },
+    {
+      "id": "074",
+      "domain": "Physical AI",
+      "workload": "Digital-twin calibration loop",
+      "inputs": "simulated dynamics, lab measurements",
+      "evaluation": "sim-to-real error; calibration drift",
+      "unit_economics": "cost per validated twin revision",
+      "phase": "P2",
+      "gate": "Independent test set"
+    },
+    {
+      "id": "075",
+      "domain": "Physical AI",
+      "workload": "Fleet maintenance predictor",
+      "inputs": "authorized equipment telemetry, service logs",
+      "evaluation": "lead time; false maintenance alerts",
+      "unit_economics": "cost per avoided failure",
+      "phase": "P2",
+      "gate": "No safety-critical auto action"
+    },
+    {
+      "id": "076",
+      "domain": "Physical AI",
+      "workload": "UAV infrastructure-inspection review",
+      "inputs": "consented imagery, flight logs",
+      "evaluation": "defect precision; mission safety",
+      "unit_economics": "cost per reviewed asset",
+      "phase": "P2",
+      "gate": "Airspace and privacy rules"
+    },
+    {
+      "id": "077",
+      "domain": "Physical AI",
+      "workload": "UAS link-health observability",
+      "inputs": "authorized MAVLink or equivalent telemetry",
+      "evaluation": "dropout detection; recovery time",
+      "unit_economics": "cost per monitored flight-hour",
+      "phase": "P2",
+      "gate": "No flight-control commands"
+    },
+    {
+      "id": "078",
+      "domain": "Physical AI",
+      "workload": "Human override effectiveness test",
+      "inputs": "synthetic autonomy incidents, intervention log",
+      "evaluation": "override latency; success rate",
+      "unit_economics": "cost per validated override",
+      "phase": "P2",
+      "gate": "Operator training and stop tests"
+    },
+    {
+      "id": "079",
+      "domain": "Physical AI",
+      "workload": "Robot black-box evidence packet",
+      "inputs": "time-synced sensor, action, policy events",
+      "evaluation": "reconstruction completeness; clock skew",
+      "unit_economics": "cost per reviewable episode",
+      "phase": "P2",
+      "gate": "No aviation certification claim"
+    },
+    {
+      "id": "080",
+      "domain": "Physical AI",
+      "workload": "Fleet unit-economics command board",
+      "inputs": "robot uptime, human labor, energy, maintenance",
+      "evaluation": "accepted work-hour; downtime",
+      "unit_economics": "cost per accepted physical task",
+      "phase": "P2",
+      "gate": "Full capital and safety cost"
+    },
+    {
+      "id": "081",
+      "domain": "Cyber defense",
+      "workload": "ATT&CK coverage graph",
+      "inputs": "versioned ATT&CK STIX, controls, alerts",
+      "evaluation": "technique-evidence coverage; gaps",
+      "unit_economics": "cost per validated detection",
+      "phase": "P1",
+      "gate": "Defensive mapping only"
+    },
+    {
+      "id": "082",
+      "domain": "Cyber defense",
+      "workload": "Detection strategy evaluation",
+      "inputs": "authorized logs, MITRE strategies and analytics",
+      "evaluation": "precision; recall; detection delay",
+      "unit_economics": "cost per true positive reviewed",
+      "phase": "P1",
+      "gate": "No exploit execution"
+    },
+    {
+      "id": "083",
+      "domain": "Cyber defense",
+      "workload": "IAM and PAM behavior review",
+      "inputs": "authorized identity logs, privileged sessions",
+      "evaluation": "high-risk session recall; false alarms",
+      "unit_economics": "cost per reviewed privileged session",
+      "phase": "P1",
+      "gate": "No secret capture"
+    },
+    {
+      "id": "084",
+      "domain": "Cyber defense",
+      "workload": "T1078 valid-account anomaly benchmark",
+      "inputs": "synthetic identity events, reviewer labels",
+      "evaluation": "detection recall; false-positive rate",
+      "unit_economics": "cost per detected valid-account misuse",
+      "phase": "P1",
+      "gate": "MITRE version pinning"
+    },
+    {
+      "id": "085",
+      "domain": "Cyber defense",
+      "workload": "T1213 repository access anomaly benchmark",
+      "inputs": "synthetic repository audit events",
+      "evaluation": "suspicious access recall; benign pass",
+      "unit_economics": "cost per reviewed anomaly",
+      "phase": "P1",
+      "gate": "Defensive synthetic traces"
+    },
+    {
+      "id": "086",
+      "domain": "Cyber defense",
+      "workload": "T1021 remote-service detection benchmark",
+      "inputs": "synthetic remote-session metadata",
+      "evaluation": "precision; time to detect",
+      "unit_economics": "cost per validated alert",
+      "phase": "P1",
+      "gate": "No unauthorized scanning"
+    },
+    {
+      "id": "087",
+      "domain": "Cyber defense",
+      "workload": "Agent prompt-injection defense eval",
+      "inputs": "synthetic untrusted documents, tool receipts",
+      "evaluation": "unsafe action block; task utility",
+      "unit_economics": "cost per evaluated agent task",
+      "phase": "P0",
+      "gate": "No live hostile content deployment"
+    },
+    {
+      "id": "088",
+      "domain": "Cyber defense",
+      "workload": "Model and connector supply-chain inventory",
+      "inputs": "SBOM, model manifest, signed connector record",
+      "evaluation": "inventory coverage; stale version rate",
+      "unit_economics": "cost per governed component-month",
+      "phase": "P1",
+      "gate": "Signature and provenance checks"
+    },
+    {
+      "id": "089",
+      "domain": "Cyber defense",
+      "workload": "ICS telemetry resilience tabletop",
+      "inputs": "synthetic OT logs, safe digital twin",
+      "evaluation": "detection delay; safe-state decision",
+      "unit_economics": "cost per completed defensive exercise",
+      "phase": "P2",
+      "gate": "No live control-system writes"
+    },
+    {
+      "id": "090",
+      "domain": "Cyber defense",
+      "workload": "Privacy and retention assurance monitor",
+      "inputs": "consent flags, TTL, deletion receipts",
+      "evaluation": "deletion p95; unauthorized retention",
+      "unit_economics": "cost per governed record-month",
+      "phase": "P1",
+      "gate": "Independent privacy review"
+    },
+    {
+      "id": "091",
+      "domain": "Dual-use assurance",
+      "workload": "OSINT provenance and uncertainty desk",
+      "inputs": "lawful public sources, source metadata",
+      "evaluation": "claim support; uncertainty calibration",
+      "unit_economics": "cost per analyst-reviewed claim",
+      "phase": "R",
+      "gate": "No covert collection"
+    },
+    {
+      "id": "092",
+      "domain": "Dual-use assurance",
+      "workload": "Humanitarian situation evidence fusion",
+      "inputs": "public crisis reports, consented field updates",
+      "evaluation": "location error; duplicate-event rate",
+      "unit_economics": "cost per verified situation update",
+      "phase": "R",
+      "gate": "Civilian protection and data minimization"
+    },
+    {
+      "id": "093",
+      "domain": "Dual-use assurance",
+      "workload": "Defense logistics readiness forecast",
+      "inputs": "authorized inventory, transport and maintenance",
+      "evaluation": "forecast calibration; stockout delay",
+      "unit_economics": "cost per reviewed logistics decision",
+      "phase": "R",
+      "gate": "No targeting or strike support"
+    },
+    {
+      "id": "094",
+      "domain": "Dual-use assurance",
+      "workload": "Coalition compartment boundary test",
+      "inputs": "synthetic classified-like labels, access policy",
+      "evaluation": "cross-compartment leak rate",
+      "unit_economics": "cost per validated boundary test",
+      "phase": "R",
+      "gate": "Synthetic data only"
+    },
+    {
+      "id": "095",
+      "domain": "Dual-use assurance",
+      "workload": "Vehicle autonomy safety assurance",
+      "inputs": "simulation telemetry, human-override events",
+      "evaluation": "near-miss recall; stop latency",
+      "unit_economics": "cost per tested vehicle-hour",
+      "phase": "R",
+      "gate": "No weapons or autonomous engagement"
+    },
+    {
+      "id": "096",
+      "domain": "Dual-use assurance",
+      "workload": "Communications availability dashboard",
+      "inputs": "authorized network health, outage events",
+      "evaluation": "availability; incident detection delay",
+      "unit_economics": "cost per monitored link-hour",
+      "phase": "R",
+      "gate": "No interception payloads"
+    },
+    {
+      "id": "097",
+      "domain": "Dual-use assurance",
+      "workload": "Disinformation evidence assessment",
+      "inputs": "public claims, corroborating sources",
+      "evaluation": "claim calibration; false accusation rate",
+      "unit_economics": "cost per analyst-reviewed assessment",
+      "phase": "R",
+      "gate": "No influence targeting"
+    },
+    {
+      "id": "098",
+      "domain": "Dual-use assurance",
+      "workload": "ATT&CK-informed cyber defense tabletop",
+      "inputs": "versioned Enterprise and ICS ATT&CK, mock incidents",
+      "evaluation": "coverage; response time; recovery",
+      "unit_economics": "cost per completed defensive exercise",
+      "phase": "R",
+      "gate": "No offensive runbooks"
+    },
+    {
+      "id": "099",
+      "domain": "Dual-use assurance",
+      "workload": "High-consequence decision authority trace",
+      "inputs": "synthetic approvals, policy and action receipts",
+      "evaluation": "approval completeness; override latency",
+      "unit_economics": "cost per independently reviewed decision",
+      "phase": "R",
+      "gate": "Human authority and audit"
+    },
+    {
+      "id": "100",
+      "domain": "Dual-use assurance",
+      "workload": "Dual-use deployment assurance board",
+      "inputs": "risk register, tests, rights, human decisions",
+      "evaluation": "unresolved critical findings; gate pass",
+      "unit_economics": "cost per governed deployment-month",
+      "phase": "R",
+      "gate": "Independent legal and safety review"
+    }
+  ]
+}

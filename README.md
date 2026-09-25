@@ -18,6 +18,10 @@ The [live interactive Context Atlas](https://aah20.github.io/Swarm-Context-Comma
 
 The [personalization and learning architecture](docs/personalization-and-learning.md) specifies the next gates: supervised ranking and outcome prediction, unsupervised cohort/drift analysis, graph features, causal experiments, constrained bandits and sandboxed RL. It separates implemented baselines from proposed systems and defines recall, accepted work, cost, latency, drift, leakage and subgroup evaluations. The [project reference ledger](docs/project-references.md) names the upstream systems that informed boundaries and the actual integration status of each.
 
+## 100 candidate workloads
+
+The [numbered workload catalog](docs/100-workloads.md) spans ten domains: licensed and public data, continuous BI, synthetic training environments, product audiences and pricing, due diligence, computer use, agent infrastructure, physical AI, cyber defense, and dual-use assurance. Each of its 100 proposals has candidate inputs, evaluation KPIs, a fully loaded unit-cost denominator, a maturity phase and a hard release gate. The [machine-readable catalog](catalog/workloads.json) is generated from [one source file](catalog/workloads.psv) and validated in CI. The catalog is a map of possible applications, **not** a claim that 100 integrations or workloads are deployed.
+
 ## Installable interfaces
 
 | Interface | Get started | Scope |

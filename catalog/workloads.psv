@@ -1,0 +1,101 @@
+id|domain|workload|inputs|evaluation|unit_economics|phase|gate
+001|Licensed data|Bloomberg market-data entitlement ledger|Bloomberg Data License or approved API contracts, instrument IDs|entitlement violations; feed freshness|cost per entitled instrument-day|P1|No Terminal scraping or unlicensed reuse
+002|Licensed data|Orbis and former Osiris company graph|licensed Moody's Orbis exports, company IDs|entity precision; ownership freshness|cost per verified company record|P1|Contract rights and human review
+003|Licensed data|Argos Atlas geospatial-risk ingest|licensed Argos Atlas API, permitted map layers|geocode accuracy; event freshness|cost per reviewed geospatial alert|P1|API rights and geographic privacy
+004|Licensed data|Public filing change monitor|SEC or equivalent public filings, issuer IDs|material-change recall; false alert rate|cost per accepted filing insight|P0|Source citation and jurisdiction labels
+005|Licensed data|Cross-border corporate registry normalization|licensed registries, legal entity identifiers|entity-match precision; duplicate rate|cost per resolved legal entity|P1|Jurisdiction-specific reuse rights
+006|Licensed data|Procurement-award intelligence|official tender feeds, contract notices|award-link precision; lead time|cost per verified opportunity|P1|No confidential bid inference
+007|Licensed data|Patent and research landscape|patent offices, publications, assignee IDs|citation recall; assignee resolution|cost per reviewed technology cluster|P0|Provenance and date validity
+008|Licensed data|Supplier exposure signals|consented supplier records, permitted news feeds|supplier event precision; detection delay|cost per reviewed supplier alert|P1|No unsupported adverse claims
+009|Licensed data|Licensed news and transcript synthesis|licensed news and transcripts, timestamped source IDs|grounding precision; update latency|cost per accepted analyst brief|P1|Copyright and retention limits
+010|Licensed data|Data-rights and lineage registry|contracts, permitted datasets, transformations|rights coverage; deletion propagation|cost per governed dataset-month|P0|No training without explicit rights
+011|Continuous BI|Temporal lakehouse and Iceberg snapshots|consented events, versioned tables|query freshness; reproducibility|cost per query and stored terabyte-month|P1|Tenant isolation and retention
+012|Continuous BI|Identity and entity resolution pipeline|CRM, ERP, registry and partner IDs|match precision and recall|cost per resolved entity|P0|Human merge review and reversibility
+013|Continuous BI|Metric semantic layer|finance, product and operations event definitions|metric consistency; lineage completeness|cost per governed KPI-month|P0|Approved denominator definitions
+014|Continuous BI|Causal KPI attribution|experiment assignment, outcomes, covariates|lift interval; randomization integrity|cost per valid experiment|P1|No causal claim from correlation
+015|Continuous BI|Streaming anomaly triage|consented event streams, seasonal baselines|precision at alert budget; delay|cost per accepted anomaly|P1|Human disposition labels
+016|Continuous BI|Probabilistic demand forecast|sales, capacity, calendar signals|calibration; forecast error|cost per forecasted SKU-week|P1|Drift and stockout monitoring
+017|Continuous BI|Graph-based dependency impact|service map, supplier graph, events|path recall; impact precision|cost per verified dependency path|P1|Source-linked edges
+018|Continuous BI|Cohort economics workbench|consented acquisition and retention events|cohort stability; LTV calibration|cost per analyzed cohort|P1|No protected-trait targeting
+019|Continuous BI|Executive decision briefing|versioned KPIs, annotated evidence|citation accuracy; decision usefulness|cost per accepted briefing|P0|Analyst signoff
+020|Continuous BI|Continuous unit-economics reconciliation|ledger, cloud bill, model usage, outcomes|cost allocation coverage; variance|cost per independently accepted task|P0|Include license, idle and review cost
+021|Synthetic data|Clean-room fixture compiler|schema contracts, synthetic generators|schema coverage; reproducibility|cost per validated fixture|P0|No real secret leakage
+022|Synthetic data|Privacy-preserving tabular synthesis|consented source statistics, constraints|utility gap; membership-inference risk|cost per usable synthetic row|P1|Privacy attack assessment
+023|Synthetic data|Synthetic document corpus|licensed templates, fictional entities|task realism; citation consistency|cost per validated document|P0|License and memorization tests
+024|Synthetic data|Knowledge-graph scenario generator|typed ontology, synthetic relation rules|constraint validity; path diversity|cost per valid graph scenario|P0|No real identity reconstruction
+025|Synthetic data|Time-series incident replay|sanitized telemetry, simulated outages|temporal fidelity; replay determinism|cost per replayed incident|P0|Isolated nonproduction environment
+026|Synthetic data|Synthetic browser and ERP sandbox|mock websites, fictional transactions|state-transition coverage; rollback|cost per completed sandbox task|P0|No live financial side effects
+027|Synthetic data|Robot digital-twin scenario pack|simulated sensors, objects and failures|sim-to-real gap; safety coverage|cost per evaluated episode|P2|No autonomous physical deployment
+028|Synthetic data|Multimodal annotation quality lab|licensed images, audio, text, consent flags|inter-rater agreement; label error|cost per verified annotation|P1|Biometric consent and minimization
+029|Synthetic data|Adversarial prompt and tool fixture suite|synthetic prompts, tool schemas, decoys|attack detection recall; benign pass rate|cost per validated test case|P0|Authorized defensive evaluation only
+030|Synthetic data|Training-data suitability score|dataset rights, quality, contamination probes|contamination rate; rights coverage|cost per approved dataset|P1|Explicit model-training rights
+031|Audience lab|Synthetic audience hypothesis studio|consented research, fictional agents, product brief|hypothesis diversity; real-world calibration|cost per tested hypothesis|P0|Synthetic reaction is not demand proof
+032|Audience lab|Product-market fit interview planner|consented interviews, survey evidence|question coverage; insight accuracy|cost per accepted interview plan|P0|No fabricated respondent claims
+033|Audience lab|Price-elasticity experiment designer|prices, randomized offers, outcomes|elasticity interval; revenue lift|cost per valid price experiment|P1|Fair pricing and human approval
+034|Audience lab|Conversion funnel diagnosis|consented product analytics, page events|drop-off attribution; experiment lift|cost per verified funnel insight|P1|Consent and cohort minimums
+035|Audience lab|Recommendation quality simulator|catalog, opt-in interactions, holdout set|nDCG; incremental utility; diversity|cost per accepted recommendation|P1|No manipulative personalization
+036|Audience lab|Launch messaging test bench|product claims, consented survey panels|claim comprehension; confidence interval|cost per tested message|P1|No deceptive claims
+037|Audience lab|Onboarding friction mapper|session events, support tickets|time-to-value; abandonment cause|cost per resolved friction point|P1|PII minimization
+038|Audience lab|Churn prevention decision support|consented account history, service events|retention lift; false outreach rate|cost per retained consenting account|P1|No discriminatory offers
+039|Audience lab|Regional demand scenario analysis|public statistics, opted-in customer evidence|forecast calibration by region|cost per validated region forecast|P2|Avoid person-level surveillance
+040|Audience lab|Investor-pitch assumption stress test|financial model, market evidence, objections|unsupported-claim rate; scenario coverage|cost per reviewed pitch model|P0|No invented traction
+041|Due diligence|Customer-fit evidence graph|consented needs, product capability, contract scope|fit precision; pilot conversion|cost per qualified pilot|P1|No automated high-impact eligibility
+042|Due diligence|Investor thesis matching|public investor thesis, founder-approved deck|match precision; useful introduction rate|cost per founder-approved match|P1|No private investor profiling
+043|Due diligence|Beneficial-ownership review workspace|licensed registry data, legal entity documents|ownership completeness; reviewer correction|cost per reviewed ownership chain|P1|Licensed data and legal review
+044|Due diligence|Financial statement variance review|authorized statements, audited references|material variance recall; false flags|cost per analyst-approved variance|P1|No investment advice automation
+045|Due diligence|Vendor and supplier risk packet|contracts, SLAs, verified public evidence|risk-evidence completeness; freshness|cost per approved vendor packet|P1|Human procurement decision
+046|Due diligence|Data-room completeness checker|authorized deal documents, checklist|missing-item recall; access audit|cost per reviewed data room|P1|Deal confidentiality
+047|Due diligence|Contract obligation extraction|authorized agreements, clause taxonomy|obligation precision; date accuracy|cost per lawyer-reviewed contract|P1|Lawyer signoff and privilege controls
+048|Due diligence|Acquisition integration scenario model|authorized operations, systems inventory|integration forecast error; dependency coverage|cost per reviewed integration scenario|P2|No undisclosed deal data
+049|Due diligence|Capital-efficiency benchmark|approved financials, peer definitions|normalization accuracy; interval width|cost per reviewed comparable set|P1|Peer-data license
+050|Due diligence|Adverse-event evidence reconciliation|permitted media, company statements, filings|false allegation rate; source conflicts|cost per human-reviewed finding|P1|Defamation and identity safeguards
+051|Computer use|Read-only website QA agent|test site, fixture accounts, accessibility tree|accepted defect recall; false defects|cost per verified defect|P0|Test-only accounts
+052|Computer use|CRM record reconciliation|authorized CRM export, task queue|match accuracy; duplicate write rate|cost per corrected record|P1|Approval before write
+053|Computer use|ERP exception triage|authorized invoices, purchase orders, ERP states|exception precision; cycle time|cost per reviewer-accepted exception|P1|No autonomous payment
+054|Computer use|Support case resolution assistant|consented tickets, knowledge base, outcomes|accepted resolution; rework rate|cost per accepted case|P1|Escalation for high-stakes cases
+055|Computer use|Procurement quote comparison|approved quotes, specifications|comparison coverage; arithmetic accuracy|cost per approved sourcing packet|P1|Human award decision
+056|Computer use|Account onboarding checklist|authorized forms, identity status, task state|completion rate; error rate|cost per completed onboarding|P1|No automated legal eligibility
+057|Computer use|Code-change evidence agent|repository, tests, issue tracker|test pass; review corrections|cost per accepted pull request|P1|Sandbox and human merge
+058|Computer use|Browser task recovery harness|synthetic website, failure injection|recovery rate; duplicate action rate|cost per recovered task|P0|Idempotency and rollback
+059|Computer use|Cross-app workflow replay|approved app mocks, A2A or MCP receipts|trace completeness; state consistency|cost per reproducible workflow|P1|Credential isolation
+060|Computer use|Human handoff scheduler|approved task queue, reviewer availability|handoff delay; acceptance rate|cost per human-approved handoff|P1|Human authority retained
+061|Agent fleet|Logical agent registry benchmark|synthetic descriptors, tenant IDs|registration throughput; collision rate|cost per registered logical agent|P0|Do not claim active concurrency
+062|Agent fleet|Fair task admission benchmark|tenant queues, token estimates|fairness; starvation; p95 queue delay|cost per admitted task|P0|Quota and overload tests
+063|Agent fleet|Budgeted context compiler|source-linked candidate records, policy|recall at budget; leakage rate|cost per accepted context bundle|P0|Scope checks before ranking
+064|Agent fleet|GraphRAG retrieval comparison|licensed corpus, labeled graph paths|path recall; grounding; latency|cost per grounded answer|P1|Graph provenance and deletion
+065|Agent fleet|Adaptive context policy selector|approved policies, independent feedback|regret; accepted work; guardrail breaches|cost per accepted task|P0|No self-authorizing policy changes
+066|Agent fleet|A2A interoperability harness|official protocol fixtures, agent tasks|conformance pass rate; recovery|cost per interoperable task|P1|Official version pinning
+067|Agent fleet|MCP tool governance plane|approved tool schemas, invocations|unauthorized call rate; tool latency|cost per accepted tool invocation|P1|Authenticated principal binding
+068|Agent fleet|vLLM inference admission router|model pool, token reservations, load metrics|TTFT; throughput; cache isolation|cost per million accepted tokens|P1|Measured GPU economics
+069|Agent fleet|Serverless-container-VM placement|task traits, capacity, isolation needs|SLO pass; placement errors|cost per completed task|P1|Sandbox and warm-start tests
+070|Agent fleet|Multi-tenant recovery drill|durable task log, worker crash fixtures|recovery point; duplicate side effects|cost per recovered task|P1|Fencing and audit replay
+071|Physical AI|Robot handover safety recorder|lab sensor stream, consented video, commands|unsafe handover recall; evidence gaps|cost per validated handover episode|P2|Human stop and lab only
+072|Physical AI|Warehouse pick quality monitor|simulated or consented robot telemetry|pick success; damage; intervention|cost per accepted pick|P2|Worker safety review
+073|Physical AI|VLA policy evaluation sandbox|simulator trajectories, approved task goals|success; near miss; OOD failure|cost per evaluated episode|P2|No direct field actuation
+074|Physical AI|Digital-twin calibration loop|simulated dynamics, lab measurements|sim-to-real error; calibration drift|cost per validated twin revision|P2|Independent test set
+075|Physical AI|Fleet maintenance predictor|authorized equipment telemetry, service logs|lead time; false maintenance alerts|cost per avoided failure|P2|No safety-critical auto action
+076|Physical AI|UAV infrastructure-inspection review|consented imagery, flight logs|defect precision; mission safety|cost per reviewed asset|P2|Airspace and privacy rules
+077|Physical AI|UAS link-health observability|authorized MAVLink or equivalent telemetry|dropout detection; recovery time|cost per monitored flight-hour|P2|No flight-control commands
+078|Physical AI|Human override effectiveness test|synthetic autonomy incidents, intervention log|override latency; success rate|cost per validated override|P2|Operator training and stop tests
+079|Physical AI|Robot black-box evidence packet|time-synced sensor, action, policy events|reconstruction completeness; clock skew|cost per reviewable episode|P2|No aviation certification claim
+080|Physical AI|Fleet unit-economics command board|robot uptime, human labor, energy, maintenance|accepted work-hour; downtime|cost per accepted physical task|P2|Full capital and safety cost
+081|Cyber defense|ATT&CK coverage graph|versioned ATT&CK STIX, controls, alerts|technique-evidence coverage; gaps|cost per validated detection|P1|Defensive mapping only
+082|Cyber defense|Detection strategy evaluation|authorized logs, MITRE strategies and analytics|precision; recall; detection delay|cost per true positive reviewed|P1|No exploit execution
+083|Cyber defense|IAM and PAM behavior review|authorized identity logs, privileged sessions|high-risk session recall; false alarms|cost per reviewed privileged session|P1|No secret capture
+084|Cyber defense|T1078 valid-account anomaly benchmark|synthetic identity events, reviewer labels|detection recall; false-positive rate|cost per detected valid-account misuse|P1|MITRE version pinning
+085|Cyber defense|T1213 repository access anomaly benchmark|synthetic repository audit events|suspicious access recall; benign pass|cost per reviewed anomaly|P1|Defensive synthetic traces
+086|Cyber defense|T1021 remote-service detection benchmark|synthetic remote-session metadata|precision; time to detect|cost per validated alert|P1|No unauthorized scanning
+087|Cyber defense|Agent prompt-injection defense eval|synthetic untrusted documents, tool receipts|unsafe action block; task utility|cost per evaluated agent task|P0|No live hostile content deployment
+088|Cyber defense|Model and connector supply-chain inventory|SBOM, model manifest, signed connector record|inventory coverage; stale version rate|cost per governed component-month|P1|Signature and provenance checks
+089|Cyber defense|ICS telemetry resilience tabletop|synthetic OT logs, safe digital twin|detection delay; safe-state decision|cost per completed defensive exercise|P2|No live control-system writes
+090|Cyber defense|Privacy and retention assurance monitor|consent flags, TTL, deletion receipts|deletion p95; unauthorized retention|cost per governed record-month|P1|Independent privacy review
+091|Dual-use assurance|OSINT provenance and uncertainty desk|lawful public sources, source metadata|claim support; uncertainty calibration|cost per analyst-reviewed claim|R|No covert collection
+092|Dual-use assurance|Humanitarian situation evidence fusion|public crisis reports, consented field updates|location error; duplicate-event rate|cost per verified situation update|R|Civilian protection and data minimization
+093|Dual-use assurance|Defense logistics readiness forecast|authorized inventory, transport and maintenance|forecast calibration; stockout delay|cost per reviewed logistics decision|R|No targeting or strike support
+094|Dual-use assurance|Coalition compartment boundary test|synthetic classified-like labels, access policy|cross-compartment leak rate|cost per validated boundary test|R|Synthetic data only
+095|Dual-use assurance|Vehicle autonomy safety assurance|simulation telemetry, human-override events|near-miss recall; stop latency|cost per tested vehicle-hour|R|No weapons or autonomous engagement
+096|Dual-use assurance|Communications availability dashboard|authorized network health, outage events|availability; incident detection delay|cost per monitored link-hour|R|No interception payloads
+097|Dual-use assurance|Disinformation evidence assessment|public claims, corroborating sources|claim calibration; false accusation rate|cost per analyst-reviewed assessment|R|No influence targeting
+098|Dual-use assurance|ATT&CK-informed cyber defense tabletop|versioned Enterprise and ICS ATT&CK, mock incidents|coverage; response time; recovery|cost per completed defensive exercise|R|No offensive runbooks
+099|Dual-use assurance|High-consequence decision authority trace|synthetic approvals, policy and action receipts|approval completeness; override latency|cost per independently reviewed decision|R|Human authority and audit
+100|Dual-use assurance|Dual-use deployment assurance board|risk register, tests, rights, human decisions|unresolved critical findings; gate pass|cost per governed deployment-month|R|Independent legal and safety review

@@ -829,6 +829,9 @@ footer {
   .topbar-right span:not(.live-dot) {
     display:none
   }
+  .topbar-right .toplink:last-child {
+    display:none
+  }
   .wordmark {
     font-size:10px
   }
